@@ -61,18 +61,62 @@ The LED state module can be used to set the RGB LED. It can set a RGB color on o
 
 This module implements the LED states given below
 
-| State | LED state |
-| :--- | :--- |
-| Deep sleep | Off \(after 1 sec white\)  |
-| Sleep | Off |
-| Wake-up | Green blinking |
-| Normal | Green |
-| Fault | Red blinking |
-| Charging | Dark blue |
-| Charging done | Light blue |
-| Balancing/self-discharge | Dark blue blinking |
-| NFC communication | Yellow blinking |
-| Charger connected at startup | Red-blue blinking |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">State</th>
+      <th style="text-align:left">LED state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Deep sleep</td>
+      <td style="text-align:left">Off (after 1 sec white)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Sleep</td>
+      <td style="text-align:left">Off</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Wake-up</td>
+      <td style="text-align:left">Green</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Normal</td>
+      <td style="text-align:left">
+        <p>Green blinking (with state indication)</p>
+        <p>1 blink 0-40%</p>
+        <p>2 blinks 40-60%</p>
+        <p>3 blinks 60-80%</p>
+        <p>4 blinks 80-100%</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Fault</td>
+      <td style="text-align:left">Red blinking</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Charging</td>
+      <td style="text-align:left">Dark blue</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Charging done</td>
+      <td style="text-align:left">Light blue</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Balancing/self-discharge</td>
+      <td style="text-align:left">Dark blue blinking</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NFC communication</td>
+      <td style="text-align:left">Yellow blinking</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Charger connected at startup</td>
+      <td style="text-align:left">Red-blue blinking</td>
+    </tr>
+  </tbody>
+</table>
 
 ### **Data**
 

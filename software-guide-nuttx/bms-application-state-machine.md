@@ -10,17 +10,17 @@ description: >-
 
 In Figure 2 the main state machine that will be implemented in the BMS application can be seen. This state diagram will be implemented in the BMS application. Below the state machine, in Main state machine explained, the explanation of the states can be found. These states are needed for the requirements and to make a structured way of programming possible.
 
-![Figure 2: Battery main state machine](../.gitbook/assets/0%20%282%29.png)
+![Figure 2: Battery main state machine](../.gitbook/assets/battery-state-machine.png)
 
 ## Main state machine explained
 
 ### **INIT state**
 
-The INIT state is typically entered from the SLEEP state. In this state the microcontroller unit \(MCU\) will wake up and it will verify configurations, fault registers and functions. This is needed because it can enter the INIT state when the user resets the fault in the FAULT state. When everything is ok, it will close the switches if not already closed and proceed to the next state depending on the current direction. The LED will blink green in this state.
+The INIT state is typically entered from the SLEEP state. In this state the micro controller unit \(MCU\) will wake up and it will verify configurations, fault registers and functions. This is needed because it can enter the INIT state when the user resets the fault in the FAULT state. When everything is OK, it will close the switches if not already closed and proceed to the next state depending on the current direction. The LED will blink green in this state.
 
 ### **NORMAL state**
 
-This is the state were the battery operates how it should be, it is being discharged by the drone. Meaning that the power switches are closed. The LED will be green in this state. In this state the BMS performs the following tasks:
+This is the state were the battery operates how it should be, it is being discharged by the drone. Meaning that the power switches are closed. The LED will blink green in this state. In this state the BMS performs the following tasks:
 
 * Battery voltage, cell voltage and current is measured and calculated every measurement cycle.
 * SoC and SoH are estimated every measurement cycle.
