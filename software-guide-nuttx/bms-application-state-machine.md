@@ -20,7 +20,7 @@ The INIT state is typically entered from the SLEEP state. In this state the micr
 
 ### **NORMAL state**
 
-This is the state were the battery operates how it should be, it is being discharged by the drone. Meaning that the power switches are closed. The LED will blink green in this state. In this state the BMS performs the following tasks:
+This is the state were the battery operates how it should be, it is being discharged by the drone. Meaning that the power switches are closed. The LED will blink green in this state and indicate the state of charge with it. In this state the BMS performs the following tasks:
 
 * Battery voltage, cell voltage and current is measured and calculated every measurement cycle.
 * SoC and SoH are estimated every measurement cycle.
@@ -28,14 +28,14 @@ This is the state were the battery operates how it should be, it is being discha
 * The user can read the BMS status and parameters with NFC and the CLI. The user may change the state to SLEEP.
 * A timer will monitor if the current is below the sleep current for more than the timeout time. If this happens, it will go to the SLEEP state.
 * It will monitor if the current flows in the battery and if the current is more than the sleep current for more than the charge detect time, the state will change to the CHARGE state.
-* System and analog front end \(AFE\) diagnostics are run every Fault Tolerant Time Interval \(FTTI\). If a diagnostic fails, then depending on the fault detected and the user configuration, the battery will remain in the normal mode and the flag will only be reported to the user \(or FMU\). Or the battery will go to the FAULT state, this means cutting the power to the drone.
+* If the current is less than the sleep current while the button is pressed for 5 seconds, it will transition to the SELF DISCHARGE state.
 
 ### **CHARGE state**
 
 During this state the same functions as in the NORMAL state are implemented as well. The charging of the battery is done in different stages and should implement the charging state diagram, this diagram can be found in Figure 3. These are the states and the explanation:
 
 * CHARGE START: in this state the charging will begin, and a timer will start. After a set time \(default two minutes\) the state will change to CHARGE WITH CB. The LED will be dark blue to indicate charging.
-* CHARGE WITH CB: in this state the cell balancing \(CB\) function will be activated. This function does cell balancing based on the cell voltage, the difference of each cell voltage compared to the lowest cell voltage and the battery capacity. When the voltage of one of the cells reaches the cell over voltage level or the charging current is less than the charge complete current, it will go to the RELAXATION state. The LED will stay dark blue and will blink if cell balancing is active.
+* CHARGE WITH CB: in this state the cell balancing \(CB\) function will be activated. This function does cell balancing based on the cell voltage, the difference of each cell voltage compared to the lowest cell voltage and the battery capacity. When the voltage of one of the cells reaches the cell over voltage level or the charging current is less than the charge complete current, it will go to the RELAXATION state. The LED will stay dark blue and will blink if cell balancing is active. Balancing is done if the cells that are balanced, are the same voltage as the lowest cell voltage.
 * RELAXATION: in this state the power switches are set open, disconnecting the battery from the charger. The battery will relax for the specified relax time \(default five minutes\). During this relaxing, the cells can still be balanced since this happens with a low balancing current. At the end of the relaxation period, the system will check whether the balancing is done. If balancing is done and the highest cell voltage is lower than the cell over voltage minus the voltage margin, it will return to the CHARGE WITH CB state to continue charge process. If the highest cell is within this margin, the charging is complete, and it will go to the CHARGE COMPLETE state. The system will check if the charger is disconnected and the cell balancing is done, it will go to the SLEEP state. The LED will be dark blue. While balancing is active the LED will keep blinking.
 * CHARGE COMPLETE: in this state, the charging is done. The power switches will remain open and if the charger is disconnected it will go to the SLEEP state. The LED will be light blue.
 
@@ -45,11 +45,13 @@ If at any time the current flows from the battery to the output and this current
 
 ### **SLEEP state**
 
-The sleep state is typically entered when the current is too low for an amount of time. To preserve power if nothing happens, the MCU will be set to sleep mode and most of its peripherals will be off. The power switches will be closed to make sure the battery could be used and the AFE will be set to sleep mode but will perform to continue cyclic measurements. If any threshold is met during a cyclic measurement, it will wake the MCU and the BMS will transition to the INIT state to check what to do. Periodically, the MCU will wake up to go to the OCV state to measure the OCV. The CAN communication is disabled, but the user can communicate with the BMS using NFC or the CLI, this will wake the MCU. When this happens the AFE will wake up as well to ensure real time information. In this state the LED will be off or blink yellow if there is NFC communication with the user.
+The sleep state is typically entered when the current is too low for an amount of time. To preserve power if nothing happens, the MCU will be set to sleep mode and most of its peripherals will be off. The power switches will be closed to make sure the battery could be used and the AFE will be set to sleep mode but will perform cyclic measurements. If any threshold is met during a cyclic measurement, it will wake the MCU and the BMS will transition to the INIT state to check what to do. Periodically, the MCU will wake up to go to the OCV state to measure the OCV. The CAN communication is disabled, but the user can communicate with the BMS using NFC or the CLI, this will wake the MCU. When this happens the AFE will wake up as well to ensure real time information. In this state the LED will be off or blink yellow if there is NFC communication with the user.  
+This state has not been implemented yet.
 
 ### **OCV state**
 
-The OCV state will allow to record the latest OCV of the battery which may be useful in the SoC computation during next NORMAL phase. Cyclically the Battery will enter this mode when the Battery stays in the SLEEP state. The period the system will go from the SLEEP state to the OCV state will depend on the time since the battery has entered the SLEEP state in the first place, without going to another state except the OCV state. The time to enter the OCV state will gradually increase each time with 50% from the set begin time until the set end time is reached. If for example the set begin time is five minutes and the set end time is twenty-four hours, it will take fifteen times to have a period of is twenty-four hours. When entering this mode, the MCU will wake up the AFE and measure. The LED will blink green.
+The OCV state will allow to record the latest OCV of the battery which may be useful in the SoC computation during next NORMAL phase. Cyclically the Battery will enter this mode when the Battery stays in the SLEEP state. The period the system will go from the SLEEP state to the OCV state will depend on the time since the battery has entered the SLEEP state in the first place, without going to another state except the OCV state. The time to enter the OCV state will gradually increase each time with 50% from the set begin time until the set end time is reached. If for example the set begin time is five minutes and the set end time is twenty-four hours, it will take fifteen times to have a period of is twenty-four hours. When entering this mode, the MCU will wake up the AFE and measure. The LED will blink green.  
+This state has not been implemented yet.
 
 ### **FAULT state**
 
@@ -57,7 +59,7 @@ The FAULT state is entered when a critical fault that requires the battery switc
 
 ### **SELF DISCHARGE state**
 
-This state is used to discharge the cells to the cell storage voltage in order to improve its life duration, when storing the battery for long time. In this mode, the power switches are open, the MCU is on and the CB function is activated. When the storage voltage is reached for each cell or if cells have a lower voltage, it will transition to the DEEP SLEEP state. NFC and the CLI remain active and CAN communication is disabled. The LED will blink dark blue in this state.
+This state is used to discharge the cells to the cell storage voltage in order to improve its life duration, when storing the battery for long time. In this mode, the power switches are open, the MCU is on and the CB function is activated. When the storage voltage is reached for each cell or if cells have a lower voltage, it will transition to the DEEP SLEEP state. NFC and the CLI remain active and CAN communication is disabled. The LED will blink dark blue in this state. To exit this state and to go back to the INIT state, the button needs to be pressed. 
 
 ### **DEEP SLEEP state**
 
