@@ -27,12 +27,12 @@ The application command may be followed by optional arguments such as  sleep, de
 ### **Authentication - A1007**
 
 The authentication module will take care of the authentication using the A1007 chip. The A1007 is capable of secure asymmetric key exchange and storage as well as secure monotonic counters and flags for use in such things as counting charge or discharge cycles or permanently flagging under-voltage or over-temperature conditions.  
-This module is not implemented yet. 
+This module is not implemented yet. Only verification via I2C is implemented.
 
 ### **NFC - NTAG5**
 
 The NFC module manages NFC communication. It needs to read all the values and should be able to write the configuration parameter list. It should be able to read the values with a refresh rate of once a second. NFC will allow the user to insert commands like wake, reset, sleep, deepsleep, etc. The updater task will be used to update the data. The NTAG5 chip is capable of operating using energy harvested from the NFC field of a reading device. It can operate in a similar manner to a double ported EEPROM, and NFC records can include standardized messages for HTTP records. In this way the NFC tag could be updated regularly with status information. That information could be added to a URL, and a smartphone would be capable of reading the URL with data attached, and rendering a human readable webpage with minimal coding effort. This method removes the need for any custom software on the reading device.  
-This module is not implemented yet.
+This module is not implemented yet. Only verification via I2C is implemented.
 
 ### **Display**
 
