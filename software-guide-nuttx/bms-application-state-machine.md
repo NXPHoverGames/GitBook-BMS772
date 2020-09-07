@@ -41,7 +41,7 @@ During this state the same functions as in the NORMAL state are implemented as w
 
 If at any time the current flows from the battery to the output and this current is higher than the sleep current, the BMS transitions to the NORMAL mode. If the go to deep sleep command has been given there are two options: If one cell voltage is less than the storage voltage it will complete charging until each cell has reached the storage voltage, after this is done the BMS will transition to the DEEP SLEEP state. The other option is that no cell voltage is less than the storage voltage, than the BMS will transition to the SELF DISCHARGE state.
 
-![Figure 3: Charging state diagram](../.gitbook/assets/1.png)
+![Figure 3: Charging state diagram](../.gitbook/assets/charge-state-diagram.png)
 
 ### **SLEEP state**
 
