@@ -24,17 +24,20 @@ The command line interface \(CLI\) module takes care of communication with the u
 
 The application command may be followed by optional arguments such as  sleep, deepsleep, wake, reset, help, show, set or get. With the set or get command the user can read and write every value, including the configuration parameter list. These values can be read/written by calling the BMS application followed by a set or get command followed by the name of the variable. In the case of a set command this would instead followed by the new value of the variable.
 
-### **Authentication**
+### **Authentication - A1007**
 
-The authentication module will take care of the authentication using the A1007 chip. This module is not implemented at this time. The A1007 is capable of secure asymetric key exchange and storage as well as secure monotonic counters and flags for use in such things as counting charge or discharge cycles or permanently flagging under-voltage or over-temperature conditions.
+The authentication module will take care of the authentication using the A1007 chip. The A1007 is capable of secure asymmetric key exchange and storage as well as secure monotonic counters and flags for use in such things as counting charge or discharge cycles or permanently flagging under-voltage or over-temperature conditions.  
+This module is not implemented yet. 
 
 ### **NFC - NTAG5**
 
-The NFC module manages NFC communication. It needs to read all the values and should be able to write the configuration parameter list. It should be able to read the values with a refresh rate of once a second. NFC will allow the user to insert commands like wake, reset, sleep, deepsleep, etc. The updater task will be used to update the data. The NTAG5 chip is capable of operating using energy harvested from the NFC field of a reading device. It can operate in a similar manner to a double ported EEPROM, and NFC records can include standardized messages for HTTP records. In this way the NFC tag could be updated regularly with status information. That information could be added to a URL, and a smartphone would be capable of reading the URL with data attached, and rendering a human readable webpage with minimal coding effort. This method removes the need for any custom software on the reading device.
+The NFC module manages NFC communication. It needs to read all the values and should be able to write the configuration parameter list. It should be able to read the values with a refresh rate of once a second. NFC will allow the user to insert commands like wake, reset, sleep, deepsleep, etc. The updater task will be used to update the data. The NTAG5 chip is capable of operating using energy harvested from the NFC field of a reading device. It can operate in a similar manner to a double ported EEPROM, and NFC records can include standardized messages for HTTP records. In this way the NFC tag could be updated regularly with status information. That information could be added to a URL, and a smartphone would be capable of reading the URL with data attached, and rendering a human readable webpage with minimal coding effort. This method removes the need for any custom software on the reading device.  
+This module is not implemented yet.
 
 ### **Display**
 
-The display module manages information presented on an optional local I2C LCD display. This module is not implemented at this time.
+The display module manages information presented on an optional local I2C LCD display.   
+This module is not implemented at this time.
 
 ### **UAVCAN**
 
@@ -42,14 +45,13 @@ The UAVCAN module manages UAVCAN communication. UAVCAN V1 protocol is used to re
 
 ### **Bat management**
 
-The Bat management \(battery management\) module oversees the entire battery management system. It  monitors the battery, the PCB Temperature sensors,  and calculates voltages, temperatures, current, SoC, SoH, average power and more. It ensures the system reacts if thresholds are exceeded, it measures the OCV in sleep mode to update the SoC. This function is used to drive the gate driver, which allows it to disconnect the battery from the output power connector on the BMS. Because this is such a critical part of the system, the Bat management module creates sub-tasks. These tasks access the BCC, the timers and the GPIO. 
+The Bat management \(battery management\) part is the most important part, it will oversee the whole battery management. It will be used to monitor the battery, the PCB \(temperatures\) and calculate voltages, temperatures, current, SoC, SoH, average power and more, it will ensure the BCC chip reacts if thresholds are exceeded. Function of this part can be used to drive the gate driver, which allows it to disconnect the battery from the output power connector on the BMS. Because this is such a large part of the system, the Bat management part can create some tasks. These tasks can all access the BCC, the timers and the GPIO. 
 
 #### These are the sub-tasks:
 
-* **meas task** -  cyclic measurements and calculations.
-* **char task** - manage the charging process.
-* **sdchar task** - manage self-discharging.
-* **diag task** - cyclic diagnostic, performing a self-check of the BCC chip.
+* **meas task** -  this task will oversee the measurements and if triggered do the calculations. 
+* **otherCalc task** - this task will make sure that once every measurement cycle, the meas task will do the calculations.
+* **sdchar task** - this task will oversee the self-discharging.
 
 ### **LED state**
 
@@ -61,7 +63,7 @@ This module implements the LED states given below
 
 | State | LED state |
 | :--- | :--- |
-| Deep sleep | Off |
+| Deep sleep | Off \(after 1 sec white\)  |
 | Sleep | Off |
 | Wake-up | Green blinking |
 | Normal | Green |
@@ -70,6 +72,7 @@ This module implements the LED states given below
 | Charging done | Light blue |
 | Balancing/self-discharge | Dark blue blinking |
 | NFC communication | Yellow blinking |
+| Charger connected at startup | Red-blue blinking |
 
 ### **Data**
 
