@@ -21,6 +21,7 @@
   * [Start-up checklist](user-guide/getting-started-with-the-rddrone-bms772/start-up-checklist.md)
   * [Flashing firmware to the RDDRONE-BMS772](user-guide/getting-started-with-the-rddrone-bms772/flashing-firmware-to-the-rddrone-bms772.md)
   * [Accessories and tools for development](user-guide/getting-started-with-the-rddrone-bms772/accessories-and-tools-for-development.md)
+  * [Using the command line interface \(CLI\)](user-guide/getting-started-with-the-rddrone-bms772/using-the-command-line-interface-cli.md)
   * [Get the UAVCAN messages with the UCAN board](user-guide/getting-started-with-the-rddrone-bms772/get-the-uavcan-messages-with-the-ucan-board.md)
 
 ## Technical Guide
@@ -34,6 +35,7 @@
 * [BMS application state machine](software-guide-nuttx/bms-application-state-machine.md)
 * [Realization](software-guide-nuttx/realization.md)
 * [Charging with the BMS](software-guide-nuttx/charging-with-the-bms.md)
+* [Untitled](software-guide-nuttx/untitled-1.md)
 
 ## Software guide - bare metal and other
 
