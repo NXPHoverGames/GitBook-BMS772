@@ -8,5 +8,5 @@ By default the temperature sensor is not enabled. To configure the temperature s
 
 “bms set sensor-enable 1”.
 
-this will enable the temperature sensor measurement in the BMS software.
+this will enable the temperature sensor measurement to be done together with the rest of the measurements in the BMS software.
 
