@@ -20,9 +20,9 @@ The BMS application creates the main task wich implements a battery state machin
 
 ### **CLI**
 
-The command line interface \(CLI\) module takes care of communication with the user through nuttshell, it can be used during debugging of the smart battery application or a specific battery under test. The communication is mapped to use a universal asynchronous receiver-transmitter \(UART\) also known as the root console. 
+The command line interface \(CLI\) module takes care of communication with the user through the NuttX nutshell, it can be used during debugging of the smart battery application or a specific battery under test. The communication is mapped to use a universal asynchronous receiver-transmitter \(UART\) also known as the root console. 
 
-The application command may be followed by optional arguments such as  sleep, deepsleep, wake, reset, help, show, set or get. With the set or get command the user can read and write every value, including the configuration parameter list. These values can be read/written by calling the BMS application followed by a set or get command followed by the name of the variable. In the case of a set command this would instead followed by the new value of the variable.
+The application command may be followed by optional arguments such as sleep, deepsleep, wake, reset, help, show, set or get. With the set or get command the user can read and write every value, including the configuration parameter list. These values can be read/written by calling the BMS application followed by a set or get command followed by the name of the variable. In the case of a set command this would instead be followed by the new value of the variable. Try the command “bms help” to see the help of the CLI.
 
 ### **Authentication - A1007**
 
@@ -31,13 +31,13 @@ This module is not implemented yet. Only verification via I2C is implemented.
 
 ### **NFC - NTAG5**
 
-The NFC module manages NFC communication. It needs to read all the values and should be able to write the configuration parameter list. It should be able to read the values with a refresh rate of once a second. NFC will allow the user to insert commands like wake, reset, sleep, deepsleep, etc. The updater task will be used to update the data. The NTAG5 chip is capable of operating using energy harvested from the NFC field of a reading device. It can operate in a similar manner to a double ported EEPROM, and NFC records can include standardized messages for HTTP records. In this way the NFC tag could be updated regularly with status information. That information could be added to a URL, and a smartphone would be capable of reading the URL with data attached, and rendering a human readable webpage with minimal coding effort. This method removes the need for any custom software on the reading device.  
+The NFC module manages NFC communication. It needs to read all the values and should be able to write the configuration parameter list. It should be able to read the values with a refresh rate of once a second. NFC will allow the user to insert commands like wake, reset, sleep, deepsleep, etc. The updater task will be used to update the data. The NTAG5 chip is capable of operating using energy harvested from the NFC field of a reading device. It can operate in a similar manner to a double ported EEPROM, and NFC records can include standardized messages for HTTP records. In this way the NFC tag could be updated regularly with status information. That information could be added to a URL, and a smartphone would be capable of reading the URL with data attached and rendering a human readable webpage with minimal coding effort. This method removes the need for any custom software on the reading device.  
 This module is not implemented yet. Only verification via I2C is implemented.
 
 ### **Display**
 
 The display module manages information presented on an optional local I2C LCD display.   
-This module is not implemented at this time.
+This module is not implemented yet.
 
 ### **UAVCAN**
 
