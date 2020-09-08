@@ -48,7 +48,9 @@ If at any time the current flows from the battery to the output and this current
 ### **SLEEP state**
 
   
-The sleep state is typically entered when the current is very low for an amount of time. The power switches will be closed to make sure the battery could be used. If any threshold is met during a cyclic measurement or the button is pressed, it will wake the MCU and the BMS will transition to the INIT state to check status. If the button is pressed for five seconds, the state will change to the SELF DISCHARGE state, in order to go to the DEEP SLEEP state. In this state the LED will be off. In a later release, this state is used to preserve power.
+The sleep state is typically entered when the current is very low for an amount of time. The power switches will be closed to make sure the battery could be used. If any threshold is met during a cyclic measurement or the button is pressed, it will wake the MCU and the BMS will transition to the INIT state to check status. If the button is pressed for five seconds, the state will change to the SELF DISCHARGE state, in order to go to the DEEP SLEEP state. In this state the LED will be off.   
+  
+In a later release, this state is used to preserve power and periodically, the MCU will wake up to go to the OCV state to measure the OCV. The CAN communication is disabled, but the user can communicate with the BMS using NFC or the CLI, this will wake the MCU. When this happens the AFE will wake up as well to ensure real time information.
 
 ### **OCV state**
 
