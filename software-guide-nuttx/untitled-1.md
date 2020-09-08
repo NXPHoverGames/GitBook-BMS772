@@ -1,3 +1,7 @@
+---
+description: This page shows the parameters of the BMS.
+---
+
 # Parameters of the BMS
 
 This page will describe the variables of the BMS.   
