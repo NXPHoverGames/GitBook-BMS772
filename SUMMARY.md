@@ -34,6 +34,7 @@
 * [Software block diagram](software-guide-nuttx/untitled.md)
 * [BMS application state machine](software-guide-nuttx/bms-application-state-machine.md)
 * [Realization](software-guide-nuttx/realization.md)
+* [How to enable the battery temperature sensor](software-guide-nuttx/how-to-enable-the-battery-temperature-sensor.md)
 * [Charging with the BMS](software-guide-nuttx/charging-with-the-bms.md)
 * [Variables of the BMS](software-guide-nuttx/untitled-1.md)
 

@@ -8,5 +8,5 @@ The standard balancing current is only 50mA for one cell.
 This means it could take some time before balancing is done if the battery pack very unbalanced. 
 {% endhint %}
 
-
+To get more information about the charging process see CHARGE state on the [BMS application state machine](bms-application-state-machine.md) page.
 
