@@ -1,2 +1,2 @@
-# Untitled
+# Variables of the BMS
 

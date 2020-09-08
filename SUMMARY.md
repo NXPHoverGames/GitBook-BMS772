@@ -35,7 +35,7 @@
 * [BMS application state machine](software-guide-nuttx/bms-application-state-machine.md)
 * [Realization](software-guide-nuttx/realization.md)
 * [Charging with the BMS](software-guide-nuttx/charging-with-the-bms.md)
-* [Untitled](software-guide-nuttx/untitled-1.md)
+* [Variables of the BMS](software-guide-nuttx/untitled-1.md)
 
 ## Software guide - bare metal and other
 
