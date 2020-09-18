@@ -15,6 +15,10 @@ The BMS variables give the variables of the BMS, like the voltages, currents and
 The BMS configuration parameters are the parameters that could be used to configure the BMS, like the battery parameters, BMS parameters and more.  
 The hardware parameters could be used to keep track of the parameters of the hardware parameters, like the maximum current that is limited by the MOSFETs power dissipation. 
 
+{% hint style="info" %}
+In the console \(CLI\) type "bms get all" to get all the parameters and its current value.
+{% endhint %}
+
 ##  BMS variables list
 
 <table>
