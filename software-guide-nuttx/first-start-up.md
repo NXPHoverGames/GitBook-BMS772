@@ -8,14 +8,14 @@ description: >-
 
 ## First start-up messages
 
-When first starting the BMS with the latest software The command line interface could look like the code snipping at the end of the page.
+When first starting the BMS with the latest software the command line interface could look like the code snipping at the end of the page.
 
 You can see that the version number is: bms3.4-9.1. this comes after "BMS version: ".  
 Than it will begin doing self-tests. 
 
 * START means it will start testing that part or component
-* PASS means that the test succeeded.
-* FAIL means the test did not succeed.
+* PASS means that the test succeeded
+* FAIL means the test did not succeed
 
 Be sure to check the error messages as it could help finding out what is wrong, some errors explain why it went wrong and you could fix it.  
   
