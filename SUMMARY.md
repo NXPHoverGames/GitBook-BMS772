@@ -35,6 +35,7 @@
 * [BMS application state machine](software-guide-nuttx/bms-application-state-machine.md)
 * [Realization](software-guide-nuttx/realization.md)
 * [First start-up](software-guide-nuttx/first-start-up.md)
+* [Command Line Interface \(CLI\)](software-guide-nuttx/command-line-interface-cli.md)
 * [How to enable the battery temperature sensor](software-guide-nuttx/how-to-enable-the-battery-temperature-sensor.md)
 * [Charging with the BMS](software-guide-nuttx/charging-with-the-bms.md)
 * [Parameters of the BMS](software-guide-nuttx/untitled-1.md)
