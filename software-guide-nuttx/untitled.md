@@ -8,9 +8,9 @@ description: This page will describe the software block diagram of the nuttx exa
 
 Figure 1 is the BMS application consisting of several modular parts. Functions from these parts can be called from the BMS application. These parts are tasks that will run semi-parallel \(since it is still a single core processor\). NuttX scheduler will take care of this aspect for us. 
 
-The CLI \(command line interface\) module is called by running the BMS application from the nuttshell interface with arguments. An explanation of each of the blocks can be found below in the module description section. The CLI module is needed for easy debugging and user interface, while the NFC, Display, UAVCAN, Bat management and LED state modules are needed for the overall functional requirements.
+The CLI \(command line interface\) module is called by running the BMS application from the nuttshell interface with arguments. An explanation of each of the blocks can be found below in the module description section. The CLI module is needed for easy debugging and user interface, while the NFC, Display, UAVCAN, SBC, Bat management and LED state modules are needed for the overall functional requirements.
 
-![Figure 1: Software block diagram](../.gitbook/assets/0%20%281%29.png)
+![Figure 1: Software block diagram](../.gitbook/assets/bms-firmware-application-architecture.png)
 
 ## Module description
 
@@ -41,7 +41,11 @@ This module is not implemented yet.
 
 ### **UAVCAN**
 
-The UAVCAN module manages UAVCAN communication. UAVCAN V1 protocol is used to relay battery and power usage to the FMU \(or host processor\). It sends the battery status list on a cyclic time interval. It sends configuration data if requested.  This module also manages the SBC \(systems basis chip - CAN PHY and voltage regulator\) on board.
+The UAVCAN module manages UAVCAN communication. UAVCAN V1 protocol is used to relay battery and power usage to the FMU \(or host processor\). It sends the battery status list on a cyclic time interval. It sends configuration data if requested.  It has a task named UAVCAN that will check if data is received and will send the data if needed. The CAN PHY is in the SBC \(UJA1169\).
+
+### SBC - UJA1169
+
+The SBC module manages the power of the voltage regulators in the SBC. With this module the SBC can be set in normal mode, standby mode and sleep mode. In the normal mode both V1 \(powers the MCU and more\) and V2 \(powers internal CAN PHY\) are powered. In standby mode, V2 is off and in sleep mode both regulators V1 and V2 are off. The sleep mode is needed for the DEEP SLEEP state.
 
 ### **Bat management**
 
