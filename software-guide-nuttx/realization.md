@@ -71,13 +71,19 @@ Since the user can change configurations in run time, sometimes a configuration 
 
 Since the charging state machine and the main state machine is implemented in the main, but it needs information that is from the bat management part, a callback function will be used to give this information to the main if needed. This way the task to implement the state machine is not constant polling for information but will react if the information changes. This will ensure that this task is not always active, and the resources are used for other tasks.
 
+### **SBC**
+
+The SBC part is used to control the power of voltage regulators V1 \(The most used 3.3V\) and V2 \(CAN PHY\). With the setSbcMode\(\) function the mode of the SBC can be set. In the normal mode both V1 and V2 are active, in the standby mode V2 is off, turning off the CAN transceiver and in the sleep mode both V1 and V2 are off, turning off almost the whole BMS board. In Figure 9 the simplified flowchart of this function can be seen.
+
+![Figure 9: Set SBC mode flowchart](../.gitbook/assets/sbc_setsbcmode.png)
+
 ### **UAVCAN**
 
 In the beginning of the project everything was designed towards UAVCAN V0. Later in the project it was clear that UAVCAN V0 will not work in NuttX. But there was a new version of the UAVCAN protocol, version one \(V1\). 
 
 Within NXP, a solution has been made to make the UAVCAN V1 protocol in NuttX. In this new version, the battery info standard as stated in V0 was not specified. This is a problem since the BMS should eventually communicate over UAVCAN. And since more companies were interested in a battery info standard. A draft standard has been made. This standard has been proposed to a company that is working together with NXP and other companies to make UAVCAN V1 standards for drones. This standard is still being developed. Because the company would like to see an example working with UAVCAN, a snapshot of the draft protocol was taken, and this has been implemented with the BMSStatus message. Unlike the V0 variant, this message doesn’t include SoH, FCC and hours to full charge. 
 
-This part works with a UAVCAN task that waits \(it sleeps until a CAN transceiver signal comes in\) for an incoming UAVCAN transmission or a signal from the main that new data needs to be send. When new data needs to be sent, it will put the data that needs to be sent in the transmit buffer. It will check if the transmit buffer if it is filled and transmit the data if it is. Then it will wait for an incoming transmission again. To see this message see Table 2 and Table 3 or the flowchart see Figure 9.
+This part works with a UAVCAN task that waits \(it sleeps until a CAN transceiver signal comes in\) for an incoming UAVCAN transmission or a signal from the main that new data needs to be send. When new data needs to be sent, it will put the data that needs to be sent in the transmit buffer. It will check if the transmit buffer if it is filled and transmit the data if it is. Then it will wait for an incoming transmission again. To see this message see Table 2 and Table 3 or the flowchart see Figure 10.
 
 Table 2: BMSStatus UAVCAN message
 
