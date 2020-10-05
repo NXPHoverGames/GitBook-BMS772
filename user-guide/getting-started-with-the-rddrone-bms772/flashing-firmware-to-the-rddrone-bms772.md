@@ -4,7 +4,7 @@ description: This page will provide all the information needed to flash the BMS
 
 # Flashing firmware to the RDDRONE-BMS772
 
-## downloading J-link
+## Downloading J-link
 
 [Download J-Link Software and Documentation Pack](https://www.segger.com/downloads/jlink#J-LinkSoftwareAndDocumentationPack)
 
@@ -22,7 +22,7 @@ While you do not need it right now, the adapter board also has a 6-pin connector
 
 ![BMS programming header](../../.gitbook/assets/bmsprogrammingheader.png)
 
-## flashing the firmware
+## Flashing the firmware
 
 A guide for flashing firmware to this board is outlined in one of our consolidated Gitbooks for flashing a multitude of NXP hardware. The link to this Gitbook is below.
 
