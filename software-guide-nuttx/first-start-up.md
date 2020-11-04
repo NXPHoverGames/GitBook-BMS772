@@ -17,7 +17,7 @@ Than it will begin doing self-tests.
 * PASS means that the test succeeded
 * FAIL means the test did not succeed
 
-Be sure to check the error messages as it could help finding out what is wrong, some errors explain why it went wrong and you could fix it.  
+Be sure to check the error messages as it could help finding out what is wrong, some errors explain why it went wrong and how you could fix it.  
   
 It could be that you will get these messages:
 
@@ -40,6 +40,14 @@ START_UP_CTRL W: RX0: 230, RX1: 0
 SBC conf ctrl W: RX0: 232, RX1: 8
 Restarting!
 CRC W: RX0: 234, RX1: 0
+```
+
+It could be that you get the message that the stackvoltage is too different from sum of cells, so there is a wrong n\_cells number. This means that the actual connected cells are different than the entered number of cells \(n-cells\). To fix this, check what the current n-cells value is with "bms get n-cells" and make sure it corresponds with the number of cells in the attached battery. To configure the correct number of cells type "bms set n-cells x" where x the number of cells of the battery, that can be 3-6. After that type "bms reset" or press the button to reset the fault. In version 3.4 there is something wrong, n\_cells should be n-cells. 
+
+```text
+bcc_monitoring ERROR: stackvoltage too different from sum of cells! stack:   19.160V cells:    9.601V
+batManagement: ERROR: wrong n_cells!
+Please set the correct cells! using "bms set n_cells x"
 ```
 
 You will get a warning if the battery temperature sensor is not enabled, "WARNING: battery temperature sensor is disabled!". To enable the battery temperature sensor see [How to enable the battery temperature sensor](how-to-enable-the-battery-temperature-sensor.md). 
