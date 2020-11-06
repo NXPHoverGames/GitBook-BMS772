@@ -7,7 +7,9 @@ description: Introduction to the nuttx sofware example of the BMS
 ![NuttX logo](../.gitbook/assets/nuttx_logo.webp)
 
   
-The example starter software provided with the BMS uses the NuttX RTOS \(real-time operating system \) for microcontrollers. NuttX RTOS has an emphasis on being standards compliance and small footprint. Scalable from 8-bit to 32-bit microcontroller environments, the primary governing standards in NuttX are POSIX and ANSI standards. The POSIX compliance on embedded devices is what makes it attractive particularly to developers that are used to programming in a Linux environment.
+The example starter software provided with the BMS uses the NuttX RTOS \(real-time operating system \) for microcontrollers. NuttX RTOS has an emphasis on being standards compliance and small footprint. Scalable from 8-bit to 32-bit microcontroller environments, the primary governing standards in NuttX are POSIX and ANSI standards. The POSIX compliance on embedded devices is what makes it attractive particularly to developers that are used to programming in a Linux environment.  
+  
+The NuttX code repository can be found here: [https://github.com/NXPHoverGames/RDDRONE-BMS772](https://github.com/NXPHoverGames/RDDRONE-BMS772)
 
 {% hint style="info" %}
 This software Guide applies for bms version 3.4-9.1.
