@@ -59,6 +59,10 @@ When you type "bms help parameters", you will get a list with all the parameters
 
 The "bms help show-meas" command shows you which parameters you can view in cyclically in the CLI when the measurement happens. These commands should be used with the "bms show". To show them all, use "bms show all 1". if you want the measurements to be outlined and updated at the top of your terminal, use "bms show top 1". Keep in mind that if this is active, it could be that typed in characters disappear in this update. 
 
+{% hint style="warning" %}
+The BMS uses VT100 escape sequences to update the terminal. In order to see this, make sure your terminal emulation program \(like PuTTY or minicom\) has VT100 mode enabled.
+{% endhint %}
+
 ## How do I get parameter values?
 
 To get a single parameter value, you could use the bms get command. If for example you would like to get the state of charge, type "bms get s-charge" in the terminal. It will provide you with the value and its unit. If you want to check a lot of parameters, use the "bms get all" command, this will give you the full list of parameters, with the value and its unit.    
