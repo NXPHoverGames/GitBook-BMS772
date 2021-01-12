@@ -26,8 +26,6 @@
 
 ## Technical Guide
 
-* [Untitled](technical-guide/untitled.md)
-
 ## Software guide - NuttX
 
 * [Introduction](software-guide-nuttx/introduction.md)
