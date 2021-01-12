@@ -24,8 +24,6 @@
   * [Using the command line interface \(CLI\)](user-guide/getting-started-with-the-rddrone-bms772/using-the-command-line-interface-cli.md)
   * [Get the UAVCAN messages with the UCAN board](user-guide/getting-started-with-the-rddrone-bms772/get-the-uavcan-messages-with-the-ucan-board.md)
 
-## Technical Guide
-
 ## Software guide - NuttX
 
 * [Introduction](software-guide-nuttx/introduction.md)
