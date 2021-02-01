@@ -19,6 +19,10 @@ The hardware parameters could be used to keep track of the parameters of the har
 In the console \(CLI\) type "bms get all" to get all the parameters and its current value.
 {% endhint %}
 
+{% hint style="info" %}
+If you want more information about the parameters type "bms help parameters" in the console \(CLI\). 
+{% endhint %}
+
 ##  BMS variables list
 
 <table>
@@ -46,7 +50,7 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       </td>
       <td style="text-align:left">C</td>
       <td style="text-align:left">float</td>
-      <td style="text-align:left">The temperature of the battery</td>
+      <td style="text-align:left">The temperature of the external battery temperature sensor</td>
       <td style="text-align:left">0</td>
       <td style="text-align:left">RO</td>
       <td style="text-align:left">0</td>
@@ -88,7 +92,7 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       <td style="text-align:left">Float</td>
       <td style="text-align:left">
         <p>The average current since the last</p>
-        <p>measurement (period T_meas (defaults))</p>
+        <p>measurement (period t-meas)</p>
       </td>
       <td style="text-align:left">0</td>
       <td style="text-align:left">RO</td>
@@ -133,7 +137,7 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       <td style="text-align:left">Ah</td>
       <td style="text-align:left">float</td>
       <td style="text-align:left">Remaining capacity in the battery</td>
-      <td style="text-align:left">2.6</td>
+      <td style="text-align:left">0</td>
       <td style="text-align:left">RW</td>
       <td style="text-align:left">8</td>
     </tr>
@@ -142,10 +146,8 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       </td>
       <td style="text-align:left">Ah</td>
       <td style="text-align:left">float</td>
-      <td style="text-align:left">
-        <p>Predicted battery capacity when it is fully</p>
-        <p>charged. falls with aging</p>
-      </td>
+      <td style="text-align:left">Full charge capacity, predicted battery capacity when it is fully charged.
+        Falls with aging</td>
       <td style="text-align:left">4.6</td>
       <td style="text-align:left">RW</td>
       <td style="text-align:left">9</td>
@@ -157,7 +159,8 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       <td style="text-align:left">float</td>
       <td style="text-align:left">
         <p>Charging is expected to complete in this</p>
-        <p>time; zero if not charging</p>
+        <p>time; <del>zero if not charging</del>
+        </p>
       </td>
       <td style="text-align:left">0</td>
       <td style="text-align:left">RO</td>
@@ -195,11 +198,8 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       </td>
       <td style="text-align:left">%</td>
       <td style="text-align:left">uint8_t</td>
-      <td style="text-align:left">
-        <p>Percentage of the full charge 0, 100.</p>
-        <p>This field is required.</p>
-      </td>
-      <td style="text-align:left">55</td>
+      <td style="text-align:left">Percentage of the full charge 0, 100.</td>
+      <td style="text-align:left">0</td>
       <td style="text-align:left">RO</td>
       <td style="text-align:left">13</td>
     </tr>
@@ -220,7 +220,7 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       <td style="text-align:left"><b>model-id</b>
       </td>
       <td style="text-align:left">-</td>
-      <td style="text-align:left">int32_t</td>
+      <td style="text-align:left">uint64_t</td>
       <td style="text-align:left">Model id, set to 0 if not applicable</td>
       <td style="text-align:left">0</td>
       <td style="text-align:left">RW</td>
@@ -315,7 +315,7 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
       <td style="text-align:left">23</td>
     </tr>
     <tr>
-      <td style="text-align:left"><b>c-fet</b>
+      <td style="text-align:left"><b>c-t</b>
       </td>
       <td style="text-align:left">C</td>
       <td style="text-align:left">float</td>
@@ -362,55 +362,65 @@ In the console \(CLI\) type "bms get all" to get all the parameters and its curr
 | **Parameter** | **Unit** | **Datatype** | **Description** | **Default** | **RO/RW** | **No** |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **n-cells** | - | uint8\_t | Number of cells used in the BMS board | 3 | RW | 28 |
-| **t-meas** | ms | uint16\_t | Cycle of the battery to perform a complete battery measurement and SOC estimation can only be 10000 or a whole division of 10000 \(For example: 5000, 1000, 500\). | 1000 | RW | 29 |
+| **t-meas** | ms | uint16\_t | Cycle of the battery to perform a complete battery measurement and SOC estimation can only be 10000 or a whole division of 10000 \(For example: 5000, 1000, 500\) | 1000 | RW | 29 |
 | ~~**t-ftti**~~ | ~~ms~~ | ~~uint16\_t~~ | ~~Cycle of the battery to perform diagnostics \(Fault Tolerant Time Interval\)~~ | ~~1000~~ | ~~RW~~ | ~~30~~ |
 | **t-cyclic** | s | uint8\_t | Wake up cyclic timing of the AFE \(after front end\) during sleep mode | 1 | RW | 31 |
 | **i-sleep-oc** | mA | uint8\_t | Overcurrent threshold detection in sleep mode that will wake up the BMS and also the threshold to detect the battery is not in use | 30 | RW | 32 |
-| **v-cell-ov** | V | float | Battery maximum allowed voltage for one cell. Exceeding this voltage, the BMS will go to fault mode. | 4.2 | RW | 33 |
-| **v-cell-uv** | V | float | Battery minimum allowed voltage for one cell. Going below this voltage, the BMS will go to deep\_sleep mode. | 3 | RW | 34 |
+| **v-cell-ov** | V | float | Battery maximum allowed voltage for one cell. Exceeding this voltage, the BMS will go to fault mode | 4.2 | RW | 33 |
+| **v-cell-uv** | V | float | Battery minimum allowed voltage for one cell. Going below this voltage, the BMS will go to the fault mode \(followed by deep-sleep after t-fault-timeout\) | 3 | RW | 34 |
 | **c-cell-ot** | C | float | Over temperature threshold for the cells. Going over this threshold and the BMS will go to FAULT mode | 45 | RW | 35 |
 | **c-cell-ot-charge** | C | float | Over temperature threshold for the cells during charging. Going over this threshold and the BMS will go to FAULT mode | 40 | RW | 36 |
 | **c-cell-ut** | C | float | Under temperature threshold for the cells. Going under this threshold and the BMS will go to FAULT mode | \(-20\) | RW | 37 |
 | **c-cell-ut-charge** | C | float | Under temperature threshold for the cells during charging. Going under this threshold during charging and the BMS will go to FAULT mode | 0 | RW | 38 |
 | **a-factory** | Ah | float | Battery capacity stated by the factory | 4.6 | RW | 39 |
-| **t-bms-timeout** | s | uint16\_t | Timeout for the BMS to go to SLEEP mode when the battery is not used. | 600 | RW | 40 |
-| ~~**t-fault-timeout**~~ | ~~s~~ | ~~uint8\_t~~ | ~~After this timeout, the battery will leave the FAULT mode and go to SLEEP mode. T~~ | ~~60~~ | ~~RW~~ | ~~41~~ |
-| **t-charge-detect** | s | uint8\_t | During NORMAL mode, if the battery voltage is positive for more than this time, then the BMS will go to CHARGE mode | 1 | RW | 42 |
-| **t-cb-delay** | s | uint8\_t | Time for the cell balancing function to start after entering the CHARGE mode | 120 | RW | 43 |
-| **t-charge-relax** | s | uint16\_t | Relaxation after the charge is complete before going to another charge round. | 300 | RW | 44 |
-| **i-charge-full** | mA | uint16\_t | Current threshold to detect end of charge sequence | 50 | RW | 45 |
-| **i-charge-max** | A | float | Maximum current threshold to open the switch during charging | 9**.**2 | RW | 46 |
-| **i-out-max** | A | float | Maximum current threshold to open the switch during normal operation, if not overruled | 60 | RW | 47 |
-| **v-cell-margin** | mV | uint8\_t | Cell voltage charge margin to decide or not to go through another topping charge cycle | 30 | RW | 48 |
-| ~~**t-ocv-cyclic0**~~ | ~~s~~ | ~~int32\_t~~ | ~~OCV measurement cyclic timer start \(timer is increase by 50% at each cycle\)~~ | ~~300~~ | ~~RW~~ | ~~49~~ |
-| ~~**t-ocv-cyclic1**~~ | ~~s~~ | ~~int32\_t~~ | ~~OCV measurement cyclic timer final \(timer is increase by 50% at each cycle\)~~ | ~~86400~~ | ~~RW~~ | ~~50~~ |
-| **c-pcb-ut** | C | float | Minimal ambient temperature \(measured on the PCB\) | -20 | RW | 51 |
-| **c-pcb-ot** | C | float | Maximal ambient temperature \(measured on the PCB\) | 45 | RW | 52 |
-| **v-storage** | V | float | The voltage what is specified as storage voltage for a cell | 3.8 | RW | 53 |
-| ~~**ocv-slope**~~ | ~~V/A.min~~ | ~~float~~ | ~~The slope of the OCV curve~~  | ~~0~~ | ~~RW~~ | ~~54~~ |
-| **batt-eol** | % | uint8\_t | Percentage at which the battery is end-of-life and shouldn’t be used anymore Typically between 90%-50% | 80 | RW | 55 |
-| **sensor-enable** | - | bool | This variable is used to enable or disable the battery temperature sensor, 0 is disabled, 1 is enabled | 0 | RW | 56 |
-| **self-discharge-enable** | - | bool | this variable is used to enable or disable the SELF\_DISCHARGE state, 0 is disabled, 1 is enabled | 1 | RW | 57 |
-| **uavcan\_node\_static\_id\*** | - | uint8\_t | This is the node ID of the UAVCAN message | 255 | RW | 58 |
-| **uavcan-subject-id\*** | - | uint16\_t | This is the subject ID of the UAVCAN message | 4096 | RW | 59 |
-| **uavcan-fd-mode\*** | - | uint8\_t | If true CANFD is used, otherwise classic CAN is used | 0 | RW | 60 |
-| **uavcan-bitrate\*** | bit/s | int32\_t | the bitrate of classical can or CAN FD arbitration bitrate | 1000000 | RW | 61 |
-| **uavcan-fd-bitrate\*** | bit/s | int32\_t | the bitrate of CAN FD data bitrate | 4000000 | RW | 62 |
+| **t-bms-timeout** | s | uint16\_t | Timeout for the BMS to go to SLEEP mode when the battery is not used | 600 | RW | 40 |
+| **t-fault-timeout** | s | uint16\_t | After this timeout, with an under voltage fault the battery will go to DEEPSLEEP mode to preserve power. 0 sec is disabled | 60 | RW | 41 |
+| **t-sleep-timeout** | h | uint8\_t | When the BMS is in sleep mode for this period it will go to the self-discharge mode, 0 if disabled | 24 | RW | 42 |
+| **t-charge-detect** | s | uint8\_t | During NORMAL mode, if the battery current is positive for more than this time, then the BMS will go to CHARGE mode | 1 | RW | 43 |
+| **t-cb-delay** | s | uint8\_t | Time for the cell balancing function to start after entering the CHARGE mode | 120 | RW | 44 |
+| **t-charge-relax** | s | uint16\_t | Relaxation after the charge is complete before going to another charge round | 300 | RW | 45 |
+| **i-charge-full** | mA | uint16\_t | Current threshold to detect end of charge sequence | 50 | RW | 46 |
+| **i-charge-max** | A | float | Maximum current threshold to open the switch during charging | 4.6 | RW | 47 |
+| **i-charge-nominal** | A | float | Nominal charge current \(informative only\) | 4.6 | RW | 48 |
+| **i-out-max** | A | float | Maximum current threshold to open the switch during normal operation, if not overruled | 60 | RW | 49 |
+| **i-out-nominal** | A | float | Nominal discharge current \(informative only\) | 60 | RW | 50 |
+| **i-flight-mode** | A | uint8\_t | Current threshold to not disable the power in flight mode | 5 | RQ | 51 |
+| **v-cell-margin** | mV | uint8\_t | Cell voltage charge margin to decide or not to go through another topping charge cycle | 50 | RW | 52 |
+| **t-ocv-cyclic0** | s | int32\_t | OCV measurement cyclic timer start \(timer is increase by 50% at each cycle\) | 300 | RW | 53 |
+| **t-ocv-cyclic1** | s | int32\_t | OCV measurement cyclic timer final value \(limit\) | 86400 | RW | 54 |
+| **c-pcb-ut** | C | float | PCB ambient temperature under temperature threshold  | -20 | RW | 55 |
+| **c-pcb-ot** | C | float | PCB ambient temperature over temperature threshold  | 45 | RW | 56 |
+| **v-storage** | V | float | The voltage what is specified as storage voltage for a cell | 3.8 | RW | 57 |
+| **ocv-slope** | mV/ Amin | float | The slope of the OCV curve. This will be used to calculate the balance time | 5.3 | RW | 58 |
+| **batt-eol** | % | uint8\_t | Percentage at which the battery is end-of-life and shouldn’t be used anymore Typically between 90%-50% | 80 | RW | 59 |
+| **battery-type** | - | uint8\_t | The type of battery attached to the BMS. 0 = LiPo, 1 = LiFePo4 \(could be extended\). Wil change ov, uv, v-storage, OCV/SoC table if charged during runtime. | 0 | RW | 60 |
+| **sensor-enable** | - | bool | This variable is used to enable or disable the battery temperature sensor, 0 is disabled, 1 is enabled | 0 | RW | 61 |
+| **self-discharge-enable** | - | bool | This variable is used to enable or disable the SELF\_DISCHARGE state, 0 is disabled, 1 is enabled | 1 | RW | 62 |
+| **flight-mode-enable** | - | bool | This variable is used to enable or disable flight mode, is used together with i-flight-mode. | 0 | RW | 63 |
+| **uavcan\_node\_static\_id\*** | - | uint8\_t | This is the node ID of the UAVCAN message | 255 | RW | 64 |
+| **uavcan-ess-sub-id\*** | - | uint16\_t | This is the subject ID of the energy source state UAVCAN message \(1...100Hz\) | 4096 | RW | 65 |
+| **uavcan-bs-sub-id\*** | - | uint16\_t | This is the subject ID of the battery status UAVCAN message \(1Hz\) | 4096 | RW | 66 |
+| **uavcan-bp-sub-id\*** | - | uint16\_t | This is the subject ID of the battery parameters UAVCAN message \(0.2Hz\) | 4096 | RW | 67 |
+| **uavcan-fd-mode\*** | - | uint8\_t | If true CANFD is used, otherwise classic CAN is used | 0 | RW | 68 |
+| **uavcan-bitrate\*** | bit/s | int32\_t | The bitrate of classical can or CAN FD arbitration bitrate | 1000000 | RW | 69 |
+| **uavcan-fd-bitrate\*** | bit/s | int32\_t | The bitrate of CAN FD data bitrate | 4000000 | RW | 70 |
 
 A ~~line~~ means this is not implemented yet.  
-\*these parameters will only be implemented during startup of the BMS
+\* these parameters will only be implemented during startup of the BMS  
+\*\* this parameter is always reset to 0 at startup and can't be saved
 
 ##  BMS hardware parameters list
 
 | **Parameter** | **Unit** | **Datatype** | **Description** | **Default** | **RO/RW** | **No** |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **v-min** | V | uint8\_t | Minimum stack voltage for the BMS board to be fully functional | 6 | RW | 63 |
-| **v-max** | V | uint8\_t | Maximum stack voltage allowed by the BMS board | 26 | RW | 64 |
-| **i-peak** | A | uint16\_t | Maximum peak current that can be measured by the BMS board | 200 | RW | 65 |
-| **i-max** | A | uint8\_t | Maximum DC current allowed in the BMS board \(limited by power dissipation in the MOSFETs\) | 60 | RW | 66 |
-| **i-short** | A | uint16\_t | short circuit current threshold \(typical: 550A, min: 500A, max: 600A\) | 500 | RW | 67 |
-| **t-short** | us | uint8\_t | Blanking time for the short circuit detection | 20 | RW | 68 |
-| **i-bal** | mA | uint8\_t | Cell balancing current under 4.2V with cell balancing resistors of 82 ohms | 50 | RW | 69 |
+| **v-min** | V | uint8\_t | Minimum stack voltage for the BMS board to be fully functional | 6 | RW | 71 |
+| **v-max** | V | uint8\_t | Maximum stack voltage allowed by the BMS board | 26 | RW | 72 |
+| **i-peak** | A | uint16\_t | Maximum peak current that can be measured by the BMS board | 200 | RW | 73 |
+| **i-max** | A | uint8\_t | Maximum DC current allowed in the BMS board \(limited by power dissipation in the MOSFETs\) | 60 | RW | 74 |
+| **i-short** | A | uint16\_t | Short circuit current threshold \(typical: 550A, min: 500A, max: 600A\) | 500 | RW | 75 |
+| **t-short** | us | uint8\_t | Blanking time for the short circuit detection | 20 | RW | 76 |
+| **i-bal** | mA | uint8\_t | Cell balancing current under 4.2V with cell balancing resistors of 82 ohms | 50 | RW | 77 |
+| **m-mass** | kg | float | The total mass of the \(smart\) battery | 0 | RW | 78 |
 
 
 

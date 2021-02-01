@@ -10,7 +10,7 @@ description: >-
 
 When first starting the BMS with the latest software the command line interface could look like the code snipping at the end of the page.
 
-You can see that the version number is: bms3.4-9.1. this comes after "BMS version: ".  
+You can see that the version number is: bms3.6-10.0. this comes after "BMS version: ".  
 Than it will begin doing self-tests. 
 
 * START means it will start testing that part or component
@@ -42,38 +42,41 @@ Restarting!
 CRC W: RX0: 234, RX1: 0
 ```
 
-It could be that you get the message that the stackvoltage is too different from sum of cells, so there is a wrong n\_cells number. This means that the actual connected cells are different than the entered number of cells \(n-cells\). To fix this, check what the current n-cells value is with "bms get n-cells" and make sure it corresponds with the number of cells in the attached battery. To configure the correct number of cells type "bms set n-cells x" where x the number of cells of the battery, that can be 3-6. After that type "bms reset" or press the button to reset the fault. In version 3.4 there is something wrong, n\_cells should be n-cells. 
+It could be that you get the message that the stackvoltage is too different from sum of cells, so there is a wrong n\_cells number. This means that the actual connected cells are different than the entered number of cells \(n-cells\). The BMS will calculate what the amount of cell need to be, so to fix this, you can copy the command, like "bms set n-cells 6" from the example below. You can always configure the correct number of cells by typing "bms set n-cells x" where x the number of cells of the battery, that can be 3-6. After that type "bms reset" or press the button to reset the fault. 
 
 ```text
-bcc_monitoring ERROR: stackvoltage too different from sum of cells! stack:   19.160V cells:    9.601V
-batManagement: ERROR: wrong n_cells!
-Please set the correct cells! using "bms set n_cells x"
+bcc_monitoring ERROR: stackvoltage too different from sum of cells!
+stack: 21.799V cells: 11.069V
+bcc_monitoring ERROR: wrong n-cells!
+n-cells is currently 3
+n-cells probably needs to be 6, if so, type "bms set n-cells 6"
 ```
 
 You will get a warning if the battery temperature sensor is not enabled, "WARNING: battery temperature sensor is disabled!". To enable the battery temperature sensor see [How to enable the battery temperature sensor](how-to-enable-the-battery-temperature-sensor.md). 
 
 "BMS main loop!" means the BMS has entered the main loop and will continue according to the main state diagram. 
 
-In the beginning you will always get the message "Rising edge BCC\_FAULT!". This doesn't mean this pin was high, but this is because it will always check the faults first. 
+Each time the BMS enters a new mode, it will output this with "&lt;mode&gt; mode".
 
-Each time the BMS enters a new mode, it will output this with "&lt;mode&gt; mode"
+Here we can see an example of the startup text from the CLI:
 
 ```text
 BãEG
 Starting BMS
              total       used       free    largest
-Umem:        39600      12048      27552      27552
+Umem:        37280      10992      26288      26288
 Starting can0
 ifup can0...OK
-BMS version: bms3.4-9.1
-SELF-TEST START: FLASH
+BMS version: bms3.6-10.0
+SELF_TEST mode
+SELF-TEST LEDs: START
+SELF-TEST LEDs: PASS
 CRC of saved data doesn't match!
 Setting old values!
 nothing/wrong saved!
-SELF-TEST PASS:  FLASH
-SELF-TEST START: GPIO
-SELF-TEST PASS:  GPIO
-SELF-TEST START: SBC
+SELF-TEST GPIO: START
+WARNING: Toggling PTE8 to high and back to low!
+SELF-TEST SBC: START
 NVMS registers don't have the right value!
 SBC_CONF: 8 != 4
 MTPNV_STATUS: RX0: 225, RX1: 1
@@ -85,41 +88,42 @@ CRC W: RX0: 234, RX1: 0
 BãEG
 Starting BMS
              total       used       free    largest
-Umem:        39600      12048      27552      27552
+Umem:        37280      10992      26288      26288
 Starting can0
 ifup can0...OK
-BMS version: bms3.4-9.1
-SELF-TEST START: FLASH
+BMS version: bms3.6-10.0
+SELF_TEST mode
+SELF-TEST LEDs: START
+SELF-TEST LEDs: PASS
 CRC of saved data doesn't match!
 Setting old values!
 nothing/wrong saved!
-SELF-TEST PASS:  FLASH
-SELF-TEST START: GPIO
-SELF-TEST PASS:  GPIO
-SELF-TEST START: SBC
+SELF-TEST GPIO: START
+WARNING: Toggling PTE8 to high and back to low!
+SELF-TEST SBC: START
 Setting SBC to normal mode!
-SELF-TEST PASS:  SBC
-SELF-TEST START: UAVCAN
-SELF-TEST PASS:  UAVCAN
-SELF-TEST START: LEDs
-SELF-TEST PASS:  LEDs
-SELF-TEST START: BCC
+SELF-TEST SBC: PASS
+SELF-TEST BCC: START
 WARNING: battery temperature sensor is disabled!
 If this needs to be enabled write: "bms set sensor-enable 1" in the terminal
-SELF-TEST PASS:  BCC
-SELF-TEST START: GATE
-SELF-TEST PASS:  GATE
-SELF-TEST START: NFC
-SELF-TEST PASS:  NFC
-SELF-TEST START: A1007
-SELF-TEST PASS:  A1007
+SELF-TEST BCC: PASS
+SELF-TEST GATE: START
+SELF-TEST GATE: PASS
+SELF-TEST CURRENT_SENSE: START
+SELF-TEST CURRENT_SENSE: PASS
+SELF-TEST NFC: START
+SELF-TEST NFC: PASS
+WARNING: putting NFC in hard power-down mode
+SELF-TEST A1007: START
+SELF-TEST A1007: PASS
+SELF-TEST GPIO: PASS
+ALL SELF-TESTS PASSED!
 BMS main loop!
-Rising edge BCC_FAULT!                                                          
-init mode                                                                       
-normal mode                                                                     
-Started                                                                         
-                                                                                
-NuttShell (NSH) NuttX-8.2.0                                                     
+INIT mode
+NORMAL mode
+Started
+
+NuttShell (NSH) NuttX-10.0.0
 nsh> 
 ```
 

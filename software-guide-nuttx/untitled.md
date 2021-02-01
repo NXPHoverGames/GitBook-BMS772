@@ -20,7 +20,7 @@ The BMS application creates the main task wich implements a battery state machin
 
 ### **CLI**
 
-The command line interface \(CLI\) module takes care of communication with the user through the NuttX nutshell, it can be used during debugging of the smart battery application or a specific battery under test. The communication is mapped to use a universal asynchronous receiver-transmitter \(UART\) also known as the root console. 
+The command line interface \(CLI\) module takes care of communication with the user through the NuttX nutshell, it can be used during debugging of the smart battery application or a specific battery under test. The communication is mapped to use a universal asynchronous receiver-transmitter \(UART\) also known as the root console. The CLI can output messages colors if the ANSI escape sequences are enabled in the terminal.
 
 The application command may be followed by optional arguments such as sleep, deepsleep, wake, reset, help, show, set or get. With the set or get command the user can read and write every value, including the configuration parameter list. These values can be read/written by calling the BMS application followed by a set or get command followed by the name of the variable. In the case of a set command this would instead be followed by the new value of the variable. Try the command “bms help” to see the help of the CLI.
 
@@ -41,7 +41,7 @@ This module is not implemented yet.
 
 ### **UAVCAN**
 
-The UAVCAN module manages UAVCAN communication. UAVCAN V1 protocol is used to relay battery and power usage to the FMU \(or host processor\). It sends the battery status list on a cyclic time interval. It sends configuration data if requested.  It has a task named UAVCAN that will check if data is received and will send the data if needed. The CAN PHY is in the SBC \(UJA1169\).
+The UAVCAN module manages UAVCAN communication. UAVCAN V1 protocol is used to relay battery and power usage to the FMU \(or host processor\). It sends the battery information on a cyclic time interval.   It has a task named UAVCAN that will check if data is received and will send the data if needed. The CAN PHY is in the SBC \(UJA1169\).
 
 ### SBC - UJA1169
 
@@ -74,6 +74,10 @@ This module implements the LED states given below
   </thead>
   <tbody>
     <tr>
+      <td style="text-align:left">Self-test</td>
+      <td style="text-align:left">Red</td>
+    </tr>
+    <tr>
       <td style="text-align:left">Deep sleep</td>
       <td style="text-align:left">Off (after 1 sec white)</td>
     </tr>
@@ -97,7 +101,10 @@ This module implements the LED states given below
     </tr>
     <tr>
       <td style="text-align:left">Fault</td>
-      <td style="text-align:left">Red blinking</td>
+      <td style="text-align:left">
+        <p>Red blinking (Output disconnected)</p>
+        <p>Red (Output connected)</p>
+      </td>
     </tr>
     <tr>
       <td style="text-align:left">Charging</td>

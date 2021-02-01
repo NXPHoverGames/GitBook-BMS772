@@ -13,11 +13,11 @@ The NuttX code repository can be found here: [https://github.com/NXPHoverGames/R
 Please follow the step by step instructions in the github readme.md in order to get started with this code. We will update it and provide clarifications there as needed. 
 
 {% hint style="info" %}
-This software Guide applies for bms version 3.4-9.1.
+This software Guide applies for bms version 3.6-10.0.
 {% endhint %}
 
 {% hint style="danger" %}
-SOFTWARE provided is for reference only and should not be considered production ready or used in an end product as-is. It is expressly for the purpose of further development, research  and validation by experienced people.  Overcharging, undercharging or abusing batteries is dangerous and must be monitored carefully in a safe environment.
+SOFTWARE provided is for reference only and should not be considered production ready or used in an end product as-is. It is expressly for the purpose of further development, research and validation by experienced people. Overcharging, undercharging or abusing batteries is dangerous and must be monitored carefully in a safe environment.
 {% endhint %}
 
 {% hint style="info" %}

@@ -81,107 +81,21 @@ The SBC part is used to control the power of voltage regulators V1 \(The most us
 
 In the beginning of the project everything was designed towards UAVCAN V0. Later in the project it was clear that UAVCAN V0 will not work in NuttX. But there was a new version of the UAVCAN protocol, version one \(V1\). 
 
-Within NXP, a solution has been made to make the UAVCAN V1 protocol in NuttX. In this new version, the battery info standard as stated in V0 was not specified. This is a problem since the BMS should eventually communicate over UAVCAN. And since more companies were interested in a battery info standard. A draft standard has been made. This standard has been proposed to a company that is working together with NXP and other companies to make UAVCAN V1 standards for drones. This standard is still being developed. Because the company would like to see an example working with UAVCAN, a snapshot of the draft protocol was taken, and this has been implemented with the BMSStatus message. Unlike the V0 variant, this message doesn’t include SoH, FCC and hours to full charge. 
+Within NXP, a solution has been made to make the UAVCAN V1 protocol in NuttX. In this new version, the battery info standard as stated in V0 was not specified. This is a problem since the BMS should eventually communicate over UAVCAN. And since more companies were interested in a battery info standard. A draft standard has been made. This standard has been proposed to a company that is working together with NXP and other companies to make UAVCAN V1 standards for drones. This standard is still being developed. Because the company would like to see an example working with UAVCAN, a snapshot of the draft protocol was taken, and this has been implemented with the BMS. 
 
-This part works with a UAVCAN task that waits \(it sleeps until a CAN transceiver signal comes in\) for an incoming UAVCAN transmission or a signal from the main that new data needs to be send. When new data needs to be sent, it will put the data that needs to be sent in the transmit buffer. It will check if the transmit buffer if it is filled and transmit the data if it is. Then it will wait for an incoming transmission again. To see this message see Table 2 and Table 3 or the flowchart see Figure 10.
+This part works with a UAVCAN task that waits \(it sleeps until a CAN transceiver signal comes in\) for an incoming UAVCAN transmission or a signal from the main that new data needs to be send. When new data needs to be sent, it will put the data that needs to be sent in the transmit buffer. It will check if the transmit buffer if it is filled and transmit the data if it is. Then it will wait for an incoming transmission again. To see this message see Table 2 or the flowchart see Figure 10.
 
-Table 2: BMSStatus UAVCAN message
+Table 2: Battery status UAVCAN message
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Type</th>
-      <th style="text-align:left">Bits</th>
-      <th style="text-align:left">Name</th>
-      <th style="text-align:left">Def.</th>
-      <th style="text-align:left">Unit</th>
-      <th style="text-align:left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">uint7</td>
-      <td style="text-align:left">7</td>
-      <td style="text-align:left">state_of_charge</td>
-      <td style="text-align:left">0</td>
-      <td style="text-align:left">%</td>
-      <td style="text-align:left">Percentage of the full charge [0..100]</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">bool</td>
-      <td style="text-align:left">1</td>
-      <td style="text-align:left">output_status</td>
-      <td style="text-align:left">0</td>
-      <td style="text-align:left">-</td>
-      <td style="text-align:left">
-        <p>0 = battery output disabled</p>
-        <p>1 = battery output enabled</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">float16</td>
-      <td style="text-align:left">16</td>
-      <td style="text-align:left">temperature</td>
-      <td style="text-align:left">NaN</td>
-      <td style="text-align:left">C</td>
-      <td style="text-align:left">Battery temperature</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">float16</td>
-      <td style="text-align:left">16</td>
-      <td style="text-align:left">voltage</td>
-      <td style="text-align:left">NaN</td>
-      <td style="text-align:left">V</td>
-      <td style="text-align:left">Battery pack voltage</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">float16</td>
-      <td style="text-align:left">16</td>
-      <td style="text-align:left">current</td>
-      <td style="text-align:left">NaN</td>
-      <td style="text-align:left">A</td>
-      <td style="text-align:left">Last measured current</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">float16</td>
-      <td style="text-align:left">16</td>
-      <td style="text-align:left">consumed_energy</td>
-      <td style="text-align:left">NaN</td>
-      <td style="text-align:left">Wh</td>
-      <td style="text-align:left">power consumption since device boot.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">uint8</td>
-      <td style="text-align:left">8</td>
-      <td style="text-align:left">battery_id</td>
-      <td style="text-align:left">0</td>
-      <td style="text-align:left">-</td>
-      <td style="text-align:left">Battery ID</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">regulated.drone.sensor.BMSStatusValue.1.0</td>
-      <td style="text-align:left">8</td>
-      <td style="text-align:left">status</td>
-      <td style="text-align:left">255</td>
-      <td style="text-align:left">-</td>
-      <td style="text-align:left">Status bitmask. STATUS_UKNOWN = 255</td>
-    </tr>
-  </tbody>
-</table>
+| Type | Bits | Name | Def. | Unit | Description |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Uint4 | 4 | heartbeat | NaN | - | Readiness and the health |
+| Float32\[2\] | 64 | temperature\_min\_max | NaN | C | The minimum and maximum readings of the pack temperature sensors. |
+| Float32\[2\] | 64 | cell\_voltage\_min\_max | NaN | V | The minimum and maximum readings of the cell voltages. |
+| Float32 | 16 | available\_charge | NaN | C | The estimated electric charge currently stored in the battery. |
+| uint8 | 8 | Error | 0 | - | Error status. |
 
 Table 3: BMSStatus UAVCAN message status values
-
-| Bitmask Type | Name | Value | Description |
-| :--- | :--- | :--- | :--- |
-| uint8 | STATUS\_ASK\_PARS | 1 | There is a change in the extra parameters so these should be asked |
-| STATUS\_TEMP\_ERROR | 2 | Battery temperature limit failure, the temperature is either too high or too low |  |
-| STATUS\_OVERLOAD | 4 | Safe operating area violation, the controller should look at drawing less current |  |
-| STATUS\_BAD\_BATTERY | 8 | This battery should not be used anymore \(e.g. low SoH\) |  |
-| STATUS\_NEED\_SERVICE | 16 | This battery requires maintenance \(e.g. balancing, full recharge\) |  |
-| STATUS\_BMS\_ERROR | 32 | Battery management system/controller error, smart battery interface error |  |
-| STATUS\_OPTIONAL1 | 64 | To be applied to another status |  |
-| STATUS\_OPTIONAL2 | 128 | To be applied to another status |  |
-| STATUS\_UKNOWN | 255 | When the status is unknown |  |
 
 ![Figure 9: UAVCAN flowchart](../.gitbook/assets/6.png)
 
