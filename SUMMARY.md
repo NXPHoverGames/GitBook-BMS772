@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Disclaimer - CAUTION WARNING](disclaimer-caution-warning.md)
 * [Check for updated code immediately](check-for-updated-code-immediately.md)
-* [Known areas for change or alignment](known-areas-for-change-or-alignment.md)
+* [Errata and known areas for change or alignment](known-areas-for-change-or-alignment.md)
 
 ## Board User Guide <a id="user-guide"></a>
 
