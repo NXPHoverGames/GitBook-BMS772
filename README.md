@@ -14,9 +14,7 @@ Other uses include portable electronics and equipment needing better battery man
 * backup battery system
 * outdoor monitoring/measuring equipment
 
-
-
-![RDDRONE-BMS772](.gitbook/assets/rddrone-bms772_iso.jpg)
+![RDDRONE-BMS772](.gitbook/assets/rddrone-bms772_iso%20%281%29.jpg)
 
 It is an open hardware and software design and useful leverages components used in general purpose automotive and high-reliability industrial applications. The BCC device performs ADC conversion on the differential cell voltages and currents. It is capable of very accurate battery charge coulomb counting and battery temperature measurements. 
 
