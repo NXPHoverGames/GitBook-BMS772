@@ -8,6 +8,10 @@ The RDDRONE-BMS772 is a standalone BMS Reference Design suitable for mobile robo
 
 Other uses include portable electronics and equipment needing better battery management
 
+{% hint style="danger" %}
+The 4.0 variant is under construction
+{% endhint %}
+
 * eScooters, ebikes
 * high end power tools
 * portable medical devices \(Pulse oximeter, portable pumps, electric portable refrigerator\)
