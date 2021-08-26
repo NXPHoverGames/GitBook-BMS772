@@ -4,5 +4,5 @@ The RDDRONE-BMS772 is a standalone BMS Reference Design suitable for mobile robo
 
 The device performs ADC conversion on the differential cell voltages and currents. It is capable of very accurate battery charge coulomb counting and battery temperature measurements. Additionally, it communicates with a Flight Management Unit \(FMU\) through UAVCAN and/or an SMBus.
 
-![RDDRONE-BMS772](../../.gitbook/assets/rddrone-bms772_iso.jpg)
+![RDDRONE-BMS772](../../.gitbook/assets/rddrone-bms772_iso%20%282%29.jpg)
 
