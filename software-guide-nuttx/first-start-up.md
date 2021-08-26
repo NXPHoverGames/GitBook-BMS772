@@ -10,7 +10,7 @@ description: >-
 
 When first starting the BMS with the latest software the command line interface could look like the code snipping at the end of the page.
 
-You can see that the version number is: bms3.4-9.1. this comes after "BMS version: ".  
+You can see that the version number is: bms4.0-10.1. this comes after "BMS version: ".  
 Than it will begin doing self-tests. 
 
 * START means it will start testing that part or component

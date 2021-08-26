@@ -29,6 +29,7 @@
 * [Introduction](software-guide-nuttx/introduction.md)
 * [Software block diagram](software-guide-nuttx/untitled.md)
 * [BMS application state machine](software-guide-nuttx/bms-application-state-machine.md)
+* [Task priorities](software-guide-nuttx/task-priorities.md)
 * [Realization](software-guide-nuttx/realization.md)
 * [First start-up](software-guide-nuttx/first-start-up.md)
 * [Command Line Interface \(CLI\)](software-guide-nuttx/command-line-interface-cli.md)
