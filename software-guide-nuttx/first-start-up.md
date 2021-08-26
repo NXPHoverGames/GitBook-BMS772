@@ -52,28 +52,38 @@ Please set the correct cells! using "bms set n_cells x"
 
 You will get a warning if the battery temperature sensor is not enabled, "WARNING: battery temperature sensor is disabled!". To enable the battery temperature sensor see [How to enable the battery temperature sensor](how-to-enable-the-battery-temperature-sensor.md). 
 
-"BMS main loop!" means the BMS has entered the main loop and will continue according to the main state diagram. 
+If you see the text that the BCC overvoltage set to &lt;number&gt;mV. That number should be slightly higher than the actual set cell-ov in the software. This is because the overvoltage threshold register of the BCC is an 8-bit register, compared to the floating point variable in the software this has a lot less resolution. The value in the BCC is set slightly higher to not falsely trigger on it, but have it as a backup trigger since the software will react on the overvoltage as well with the measured cell voltage.
 
-In the beginning you will always get the message "Rising edge BCC\_FAULT!". This doesn't mean this pin was high, but this is because it will always check the faults first. 
+```text
+BCC overvoltage set to 4218mV
+```
+
+It could be that you see the following line: "NOTICE: Disabling 5V regulator \(CAN transceiver\) briefly!". This happens when the SBC needs to switch modes, because it can only be done in the standby mode where the 5V regulator is disabled.
+
+```text
+NOTICE: Disabling 5V regulator (CAN transceiver) briefly!
+```
+
+"BMS main loop!" means the BMS has entered the main loop and will continue according to the main state diagram. 
 
 Each time the BMS enters a new mode, it will output this with "&lt;mode&gt; mode"
 
 ```text
-BãEG
-Starting BMS
-             total       used       free    largest
-Umem:        39600      12048      27552      27552
-Starting can0
-ifup can0...OK
-BMS version: bms3.4-9.1
-SELF-TEST START: FLASH
-CRC of saved data doesn't match!
-Setting old values!
-nothing/wrong saved!
-SELF-TEST PASS:  FLASH
-SELF-TEST START: GPIO
-SELF-TEST PASS:  GPIO
-SELF-TEST START: SBC
+nsh> B�EG                                                                       
+Starting BMS                                                                    
+             total       used       free    largest                             
+Umem:        40528      11328      29200      29200                             
+Starting can0                                                                   
+ifup can0...OK                                                                  
+BMS version: bms4.0-10.1                                                        
+SELF_TEST mode                                                                  
+SELF-TEST LEDs: START                                                           
+SELF-TEST LEDs: PASS                                                            
+CRC of saved data doesn't match!                                                
+Setting old values!                                                             
+nothing/wrong saved!                                                            
+SELF-TEST GPIO: START                                                           
+SELF-TEST SBC: START
 NVMS registers don't have the right value!
 SBC_CONF: 8 != 4
 MTPNV_STATUS: RX0: 225, RX1: 1
@@ -82,44 +92,45 @@ START_UP_CTRL W: RX0: 230, RX1: 0
 SBC conf ctrl W: RX0: 232, RX1: 8
 Restarting!
 CRC W: RX0: 234, RX1: 0
-BãEG
-Starting BMS
-             total       used       free    largest
-Umem:        39600      12048      27552      27552
-Starting can0
-ifup can0...OK
-BMS version: bms3.4-9.1
-SELF-TEST START: FLASH
-CRC of saved data doesn't match!
-Setting old values!
-nothing/wrong saved!
-SELF-TEST PASS:  FLASH
-SELF-TEST START: GPIO
-SELF-TEST PASS:  GPIO
-SELF-TEST START: SBC
-Setting SBC to normal mode!
-SELF-TEST PASS:  SBC
-SELF-TEST START: UAVCAN
-SELF-TEST PASS:  UAVCAN
-SELF-TEST START: LEDs
-SELF-TEST PASS:  LEDs
-SELF-TEST START: BCC
-WARNING: battery temperature sensor is disabled!
-If this needs to be enabled write: "bms set sensor-enable 1" in the terminal
-SELF-TEST PASS:  BCC
-SELF-TEST START: GATE
-SELF-TEST PASS:  GATE
-SELF-TEST START: NFC
-SELF-TEST PASS:  NFC
-SELF-TEST START: A1007
-SELF-TEST PASS:  A1007
-BMS main loop!
-Rising edge BCC_FAULT!                                                          
-init mode                                                                       
-normal mode                                                                     
+nsh> B�EG                                                                       
+Starting BMS                                                                    
+             total       used       free    largest                             
+Umem:        40528      11328      29200      29200                             
+Starting can0                                                                   
+ifup can0...OK                                                                  
+BMS version: bms4.0-10.1                                                        
+SELF_TEST mode                                                                  
+SELF-TEST LEDs: START                                                           
+SELF-TEST LEDs: PASS                                                            
+CRC of saved data doesn't match!                                                
+Setting old values!                                                             
+nothing/wrong saved!                                                            
+SELF-TEST GPIO: START                                                           
+SELF-TEST SBC: START                                                            
+Setting SBC to normal mode!                                                     
+SELF-TEST SBC: PASS                                                             
+SELF-TEST BCC: START                                                            
+WARNING: battery temperature sensor is disabled!                                
+If this needs to be enabled write: "bms set sensor-enable 1" in the terminal    
+BCC overvoltage set to 4218mV                                                   
+SELF-TEST BCC: PASS                                                             
+SELF-TEST GATE: START                                                           
+SELF-TEST GATE: PASS                                                            
+SELF-TEST CURRENT_SENSE: START                                                  
+SELF-TEST CURRENT_SENSE: PASS                                                   
+SELF-TEST NFC: START                                                            
+SELF-TEST NFC: PASS                                                             
+SELF-TEST A1007: START                                                          
+SELF-TEST A1007: PASS                                                           
+SELF-TEST GPIO: PASS                                                            
+ALL SELF-TESTS PASSED!                                                          
+BMS main loop!                                                                  
+NOTICE: Disabling 5V regulator (CAN transceiver) briefly!                       
+INIT mode                                                                       
+NORMAL mode                                                                     
 Started                                                                         
                                                                                 
-NuttShell (NSH) NuttX-8.2.0                                                     
+NuttShell (NSH) NuttX-10.1.0                                                    
 nsh> 
 ```
 
@@ -131,8 +142,9 @@ Some parameters you would like to configure are:
 
 * a-rem \(the remaining capacity\)
   *  the BMS does a guess on what the remaining charge is based on a OCV\(open cell voltage\)/SoC \(state of charge\) table from one specific battery, but every battery is different.
+    * It is advisable to insert the correct OCV/SoC table for the battery.
 * a-full \(the full charge capacity of the battery\)
-  *  while charging the BMS will calculate this based on a-rem\)
+  *  while charging, the BMS will calculate this based on a-rem\)
 * model-name \(the name of the battery\)
 * n-cells \(the amount of cells of the battery\)
 * a-factory \(the factory capacity of the battery\)
