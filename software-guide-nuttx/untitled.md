@@ -108,7 +108,6 @@ This module implements the LED states given below
         <p>Red (Output connected)
           <br />
         </p>
-        <p></p>
       </td>
     </tr>
     <tr>
