@@ -38,9 +38,9 @@ The main ICs featured are listed in the table below:
 
 The following figure shows the location of the connectors on the board.
 
-![](../../.gitbook/assets/top_connectors.jpg)
+![](../../.gitbook/assets/image%20%2813%29.png)
 
-![Connectors placements \(top and bottom\)](../../.gitbook/assets/bottom_connectors.jpg)
+![Connectors placements \(top and bottom\)](../../.gitbook/assets/image%20%2811%29.png)
 
 All connectors implemented on RDDRONE-BMS772 are detailed in the table below:
 
@@ -53,17 +53,18 @@ All connectors implemented on RDDRONE-BMS772 are detailed in the table below:
 | J4 | Battery power input | - | _E.g.: FIT0588 from DFRobot_ | DNP |
 | J5 | Battery power output | - | _E.g.: FIT0588 from DFRobot_ | DNP |
 | J6 | Reset jumper | FCI | 68000-202HLF | Populated with jumper mounted |
-| J18 | SMBus \(I²C bus\) | JST MFG. CO | SM04B-GHS-TB\(LF\)\(SN\) | Populated |
+| J18 | SMBus \(I²C slave bus\) | JST MFG. CO | SM04B-GHS-TB\(LF\)\(SN\) | Populated |
 | J19 | DCD-LZ debugger | JST MFG. CO | SM07B-GHS-TB\(LF\)\(SN\) | Populated |
 | J20 | Additional CAN bus | JST MFG. CO | SM04B-GHS-TB\(LF\)\(SN\) | Populated |
 | J21 | MCU expansion header | HARWIN INC. | M50-3530842 | DNP |
 | J22 | Wake jumper | FCI | 68000-202HLF | DNP |
+| J23 | I²C master bus | FCI | 68000-204HLF | Populated |
 
 _**Note**: Hardware configuration of the board is done via 16 jumpers to solder \(SJxx\). See_ [_Cell terminal connection_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#cell-terminal-connection)_,_ [_Shunt resistor_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#shunt-resistor) _and_ [_External NFC antenna_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#external-nfc-antenna) _for more details._
 
 ## Communication with Flight Management Unit
 
-The RDDRONE-BMS772 board can communicate with a host device such as a PX4 Flight controller \(FMU\) using the SMBus bus \(can also be used as a simple I²C bus, connector J18\) or the UAVCAN bus \(can also be used as a simple CAN bus, connectors J3 and J20\).
+The RDDRONE-BMS772 board can communicate with a host device such as a PX4 Flight Management Unit \(FMU\) using the SMBus bus \(can also be used as a simple I²C bus, connector J18\) or the UAVCAN bus \(can also be used as a simple CAN bus, connectors J3 and J20\).
 
 _**Note**: For further information about UAVCAN, look for enablement in PX4.io software._
 
@@ -83,6 +84,10 @@ The RDDRONE-BMS772 implements a programmable RGB LED. Various color combination 
 ## Button
 
 The side button is a wake button, it connects the WAKE pin of the SBC to the ground when pressed. The J22 header placed in parallel of the side button can be used as an alternative if an extended or panel mount button is needed.
+
+## Display
+
+An external display could be used to display important \(battery\) information. This display can be connected to J23, the I²C master bus. This header could be supplied with 3.3V \(D34\) or 5V \(D35, default populated\). By switching the diode, 3.3V or 5V could be used.
 
 ## External and additional components
 
@@ -104,14 +109,16 @@ Some components are included in the design but are not mounted on the RDDRONEBMS
 | Capacitor on cell balancing connections | Capacitors can be added on the cell balancing circuit for EMC, according to the number of cell in use | C99, C100, C101, C102, C103, C104, C105, C106, C107 |
 | External NFC antenna | Coil as an alternative option for the PCB NFC antenna for extended range operations | L2 |
 | Resistor on gate driver RS pin | Resistor to link RS pin on gate driver to MCU | R99 |
-| MCU expansion header | Additional MCU pins are wired to a 1x8 header slot. Potential to use for local display or additional battery level LEDs | J21 |
+| MCU expansion header | Additional MCU pins are wired to a 1x8 header slot. Potential to use additional battery level LEDs, emergency button, etc. | J21 |
 | Wake jumper | Jumper for SBC wake-up. In parallel of the button | J22 |
 
 ## Test point definitions
 
 The following figure shows the location of the test points on the board.
 
-![Test points \(Top\)](../../.gitbook/assets/testpoints.jpg)
+![Test points \(Top\)](../../.gitbook/assets/image%20%2817%29.png)
+
+![Test points \(Bottom\)](../../.gitbook/assets/image%20%2826%29.png)
 
 | Label | Signal name | Description |
 | :--- | :--- | :--- |
@@ -129,5 +136,16 @@ The following figure shows the location of the test points on the board.
 | TP12 | VBAT\_OUT | Power output |
 | TP13 | GND | Ground reference of the device |
 | TP14 | N/A | Power switches gate command |
-| TP15 | N/A | Spare test point. J21\[2\] pin |
+| TP16 | BCC\_MISO | BCC SPI MISO line |
+| TP17 | BCC\_CS | BCC SPI chip select |
+| TP18 | BCC\_SCLK | BCC SPI clock signal  |
+| TP19 | BCC\_MOSI | BCC SPI MOSI line |
+| TP20 | SBC\_CS | SBC SPI chip select |
+| TP21 | SBC\_MISO | SBC SPI MISO line |
+| TP22 | SBC\_MOSI | SBC SPI MOSI line |
+| TP23 | SBC\_SCLK | SBC SPI clock signal |
+| TP24 | VCC\_HARVEST | The VOUT pin of the NTAG \(voltage harvest\) |
+| TP25 | N/A | Connected to J18\[1\] of SMBus connector |
+
+
 

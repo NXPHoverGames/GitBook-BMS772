@@ -44,15 +44,13 @@ _**Note**: SJ13, SJ14, SJ15 and SJ16 are not used for cell terminal connection. 
 
 _**Note**: The other jumpers used for cell terminal connection \(SJ1 - SJ12\) should be open!_ 
 
-![RDDRONE-BMS772 configuration for 3s \(bottom view\)](../../.gitbook/assets/3s.jpg)
+![RDDRONE-BMS772 configuration for 3s \(bottom view\)](../../.gitbook/assets/image%20%2822%29.png)
 
-![RDDRONE-BMS772 configuration for 4s \(bottom view\)](../../.gitbook/assets/4s.jpg)
+![RDDRONE-BMS772 configuration for 4s \(bottom view\)](../../.gitbook/assets/image%20%2818%29.png)
 
-![RDDRONE-BMS772 configuration for 5s \(bottom view\)](../../.gitbook/assets/5s.jpg)
+![RDDRONE-BMS772 configuration for 5s \(bottom view\)](../../.gitbook/assets/image%20%2814%29.png)
 
-![RDDRONE-BMS772 configuration for 6s \(top view\)](../../.gitbook/assets/6s_top.jpg)
-
-![RDDRONE-BMS772 configuration for 6s \(bottom view\)](../../.gitbook/assets/6s_bottom.jpg)
+![RDDRONE-BMS772 configuration for 6s \(bottom view\)](../../.gitbook/assets/image%20%2820%29.png)
 
 _**Note**: The JP1 connector should be soldered on the top side of the board._
 

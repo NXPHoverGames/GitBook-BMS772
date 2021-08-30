@@ -20,11 +20,11 @@ While you do not need it right now, the adapter board also has a 6-pin connector
 
 ![The debug adapter board](../../.gitbook/assets/image%20%286%29.png)
 
-![BMS programming header](../../.gitbook/assets/bmsprogrammingheader.png)
+![BMS programming header](../../.gitbook/assets/image%20%2816%29.png)
 
 ## Flashing the firmware
 
-A guide for flashing firmware to this board is outlined in one of our consolidated Gitbooks for flashing a multitude of NXP hardware. The link to this Gitbook is below.
+A guide for flashing firmware to this board is outlined in one of our consolidated GitBooks for flashing a multitude of NXP hardware. The link to this GitBook is below.
 
 ## [https://nxp.gitbook.io/nxpmobilerobotics/flashing-guide/flashing-hovergames-boards](https://nxp.gitbook.io/nxpmobilerobotics/flashing-guide/flashing-hovergames-boards)
 
