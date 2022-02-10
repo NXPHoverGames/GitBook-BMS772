@@ -2,11 +2,10 @@
 
 The board is organized as shown in the figures below:
 
-![](../../.gitbook/assets/board_map_top.png)
+![](../../.gitbook/assets/board\_map\_top.png)
 
-![Board map - Top](../../.gitbook/assets/rddrone-bms772_top_commented.jpg)
+![Board map - Top](../../.gitbook/assets/RDDRONE-BMS772\_top\_commented.jpg)
 
-![](../../.gitbook/assets/board_map_bottom.png)
+![](../../.gitbook/assets/board\_map\_bottom.png)
 
-![Board map - Bottom](../../.gitbook/assets/rddrone-bms772_bottom_commented.jpg)
-
+![Board map - Bottom](../../.gitbook/assets/RDDRONE-BMS772\_bottom\_commented.jpg)
