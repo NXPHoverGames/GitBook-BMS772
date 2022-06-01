@@ -38,9 +38,9 @@ The main ICs featured are listed in the table below:
 
 The following figure shows the location of the connectors on the board.
 
-![](<../../.gitbook/assets/image (13).png>)
+![](<../../.gitbook/assets/image (18).png>)
 
-![Connectors placements (top and bottom)](<../../.gitbook/assets/image (11).png>)
+![Connectors placements (top and bottom)](<../../.gitbook/assets/image (19).png>)
 
 All connectors implemented on RDDRONE-BMS772 are detailed in the table below:
 
@@ -60,7 +60,7 @@ All connectors implemented on RDDRONE-BMS772 are detailed in the table below:
 | J22       | Wake jumper                 | FCI          | 68000-202HLF                       | DNP                           |
 | J23       | I²C master bus              | FCI          | 68000-204HLF                       | Populated                     |
 
-_**Note**: Hardware configuration of the board is done via 16 jumpers to solder (SJxx). See _[_Cell terminal connection_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#cell-terminal-connection)_, _[_Shunt resistor_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#shunt-resistor)_ and _[_External NFC antenna_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#external-nfc-antenna)_ for more details._
+_**Note**: Hardware configuration of the board is done via 16 jumpers to solder (SJxx). See_ [_Cell terminal connection_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#cell-terminal-connection)_,_ [_Shunt resistor_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#shunt-resistor) _and_ [_External NFC antenna_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#external-nfc-antenna) _for more details._
 
 ## Communication with Flight Management Unit
 
@@ -75,7 +75,7 @@ There are two ways to program and debug the RDDRONE-BMS772 board:&#x20;
 * through the DCD-LZ connector (J19)&#x20;
 * through the JTAG connector (J2)
 
-_**Note**: The DCD-LZ combines a debug interface with a debug serial console. It is used on RDDRONE-FMUK66 (HoverGames). For more information see the _[_HoverGames gitbook._](https://nxp.gitbook.io/hovergames/rddrone-fmuk66/connectors/debug-interface-dcd-lz/dcd-lz-breakout-board)__
+_**Note**: The DCD-LZ combines a debug interface with a debug serial console. It is used on RDDRONE-FMUK66 (HoverGames). For more information see the_ [_HoverGames gitbook._](https://nxp.gitbook.io/hovergames/rddrone-fmuk66/connectors/debug-interface-dcd-lz/dcd-lz-breakout-board)__
 
 ## LED
 
@@ -130,9 +130,9 @@ Some components are included in the design but are not mounted on the RDDRONEBMS
 
 The following figure shows the location of the test points on the board.
 
-![Test points (Top)](<../../.gitbook/assets/image (17).png>)
+![Test points (Top)](<../../.gitbook/assets/image (20).png>)
 
-![Test points (Bottom)](<../../.gitbook/assets/image (26).png>)
+![Test points (Bottom)](<../../.gitbook/assets/image (21).png>)
 
 | Label | Signal name    | Description                                 |
 | ----- | -------------- | ------------------------------------------- |

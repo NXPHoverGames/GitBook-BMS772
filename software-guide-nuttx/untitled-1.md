@@ -111,7 +111,7 @@ In the console (CLI) type "bms get all" to get all the parameters and its curren
 | **uavcan-bitrate\***           | bit/s    | int32\_t      | The bitrate of classical can or CAN FD arbitration bitrate                                                                                                      | 1000000     | RW        | 78     |
 | **uavcan-fd-bitrate\***        | bit/s    | int32\_t      | The bitrate of CAN FD data bitrate                                                                                                                              | 4000000     | RW        | 79     |
 
-A ~~line ~~means this is not implemented yet.\
+A ~~line~~ means this is not implemented yet.\
 \*these parameters will only be implemented during startup of the BMS
 
 \

@@ -24,7 +24,7 @@ If you just received your board, and want to jump to how to configure the jumper
 
 
 
-![RDDRONE-BMS772](<.gitbook/assets/rddrone-bms772\_iso (1).jpg>)
+![RDDRONE-BMS772](<.gitbook/assets/RDDRONE-BMS772\_iso (1).jpg>)
 
 It is an open hardware and software design and useful leverages components used in general purpose automotive and high-reliability industrial applications. The BCC device performs ADC conversion on the differential cell voltages and currents. It is capable of very accurate battery charge coulomb counting and battery temperature measurements.&#x20;
 

@@ -10,7 +10,7 @@ Figure 1 is the BMS application consisting of several modular parts. Functions f
 
 The CLI (command line interface) module is called by running the BMS application from the nuttshell interface with arguments. An explanation of each of the blocks can be found below in the module description section. The CLI module is needed for easy debugging and user interface, while the NFC, Display, UAVCAN, SBC, Bat management and LED state modules are needed for the overall functional requirements.
 
-![Figure 1: Software block diagram](../.gitbook/assets/bms-firmware-application-architecturev2.png)
+![Figure 1: Software block diagram](<../.gitbook/assets/BMS Firmware Application ArchitectureV2.png>)
 
 ## Module description
 

@@ -15,9 +15,9 @@ To use this BMS772  kit, you will need:&#x20;
   * or other suitable JTAG/SWD debugger&#x20;
 
 {% hint style="success" %}
-_**Note**:  The HoverGames Drone Kit (KIT-HGDRONEK66) and/or  FMU Kit (RDDRONE-FMUK66) both include a **DCD-LZ adapter** and **Segger J-Link Mini EDU **and an **FTDI USBUART-3v3 **cable**. **_
+_**Note**:  The HoverGames Drone Kit (KIT-HGDRONEK66) and/or  FMU Kit (RDDRONE-FMUK66) both include a **DCD-LZ adapter** and **Segger J-Link Mini EDU** and an **FTDI USBUART-3v3** cable**.**_&#x20;
 
-_By using the DCD-LZ interface and **USBUART **cable you will also gain access to the command line interface (CLI) of the board._
+_By using the DCD-LZ interface and **USBUART** cable you will also gain access to the command line interface (CLI) of the board._
 {% endhint %}
 
 ### Software tools and sources

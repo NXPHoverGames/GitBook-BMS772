@@ -2,7 +2,7 @@
 
 ## Power connectors
 
-Because the RDDRONE-BMS772 board aims to be adaptable for many different battery types, the power connectors are **not **mounted on the PCB. This allows the user to configure the board with the connectors they choose, or solder battery wires directly to the board.&#x20;
+Because the RDDRONE-BMS772 board aims to be adaptable for many different battery types, the power connectors are **not** mounted on the PCB. This allows the user to configure the board with the connectors they choose, or solder battery wires directly to the board.&#x20;
 
 {% hint style="info" %}
 In a completed application, it is expected that the battery and BMS would be permanently attached. During development it can be prudent to allow disconnection of the battery for safety reasons.
@@ -11,7 +11,7 @@ In a completed application, it is expected that the battery and BMS would be per
 The power connectors footprints on the design correspond to an XT90 hobby type connector such as the [DFRobot FIT0588](https://eu.mouser.com/ProductDetail/DFRobot/FIT0588?qs=w%2Fv1CP2dgqqgLwNcYqYWgQ%3D%3D) connector. These types of connectors are readily available at local and online hobby shops and may also be used for soldering typical silicone insulation heavy gauge power wires. \
 
 
-![Optional XT90 Style Power connector](<../../.gitbook/assets/image (4).png>)
+![Optional XT90 Style Power connector](<../../.gitbook/assets/image (3).png>)
 
 TE connectivity has created a line of UMP (Unmanned Power) connectors specifically for professional high power mobile systems. Some kits ship with this type of connector included as a promotional item.
 
@@ -40,17 +40,17 @@ The correct cell terminal connector should be soldered as JP1 on the top side. C
 | 5s            | SJ1, SJ4, SJ8 and SJ12   | S6B-XH-A(LF)(SN)         | Pin 2 to 7    |
 | 6s            | SJ2, SJ5 and SJ9         | S7B-XH-A(LF)(SN)         | Pin 1 to 7    |
 
-_**Note**: SJ13, SJ14, SJ15 and SJ16 are not used for cell terminal connection. See _[_Shunt resistor_](configuring-the-hardware.md#shunt-resistor)_ and _[_External NFC antenna_](configuring-the-hardware.md#external-nfc-antenna)_._
+_**Note**: SJ13, SJ14, SJ15 and SJ16 are not used for cell terminal connection. See_ [_Shunt resistor_](configuring-the-hardware.md#shunt-resistor) _and_ [_External NFC antenna_](configuring-the-hardware.md#external-nfc-antenna)_._
 
-_**Note**: The other jumpers used for cell terminal connection (SJ1 - SJ12) should be open! _
+_**Note**: The other jumpers used for cell terminal connection (SJ1 - SJ12) should be open!_&#x20;
 
 ![RDDRONE-BMS772 configuration for 3s (bottom view)](<../../.gitbook/assets/image (22).png>)
 
-![RDDRONE-BMS772 configuration for 4s (bottom view)](<../../.gitbook/assets/image (18).png>)
+![RDDRONE-BMS772 configuration for 4s (bottom view)](<../../.gitbook/assets/image (23).png>)
 
-![RDDRONE-BMS772 configuration for 5s (bottom view)](<../../.gitbook/assets/image (14).png>)
+![RDDRONE-BMS772 configuration for 5s (bottom view)](<../../.gitbook/assets/image (24).png>)
 
-![RDDRONE-BMS772 configuration for 6s (bottom view)](<../../.gitbook/assets/image (20).png>)
+![RDDRONE-BMS772 configuration for 6s (bottom view)](<../../.gitbook/assets/image (25).png>)
 
 _**Note**: The JP1 connector should be soldered on the top side of the board._
 

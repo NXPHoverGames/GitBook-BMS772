@@ -10,7 +10,7 @@ description: >-
 
 In Figure 2 the main state machine that will be implemented in the BMS can be found. This state diagram will be implemented in the BMS application.
 
-![Figure 2: Battery main state machine](<../.gitbook/assets/battery-state-machine (3).png>)
+![Figure 2: Battery main state machine](<../.gitbook/assets/Battery state machine (3).png>)
 
 ## Main state machine explained
 
@@ -18,7 +18,7 @@ In Figure 2 the main state machine that will be implemented in the BMS can be fo
 
 The SELF TEST state is entered at power-up of the microcontroller. In this state the microcontroller initializes everything and performs the self-test, for example check if communication with a component is possible or check if the set output can be read. If everything is OK, it will go to the INIT state. If a watchdog reset has occurred not every self-test will be done to make sure the power is not turned off. The LED will be solid red in this state.
 
-### **INIT **state
+### **INIT** state
 
 The INIT state is typically entered from the SLEEP state. In this state the microcontroller unit (MCU) will wake up and it will verify configurations, fault registers and functions. This is needed because it can enter the INIT state when the user resets from a fault in the FAULT state as well. When everything is OK, it will close the switches if not already closed and proceed to the next state depending on the current direction. The LED will be steady green in this state.
 
@@ -41,7 +41,7 @@ The SELF TEST state is entered at power-up of the microcontroller. In this state
 * CHARGE START: in this state the charging will begin, and a timer will start. The LED will be blue to indicate charging. After a set time (default 120sec) or if the voltage of one of the cells reaches the cell overvoltage level (to make sure there is no cell overvoltage error) the state will change to CHARGE WITH CB.&#x20;
 * CHARGE WITH CB: in this state the cell balancing (CB) function will be activated. This function will calculate the estimated cell balance minutes per cell, which is based on the cell voltages, the difference compared to the lowest cell voltage, the balance resistor and the ocv-slope. The formula to calculate this estimated balance time is: \
   \
-  Estimated balance minutes** **= (Vcell - Vcell\_min ) \* Rbal / (Vcell \* ocvslope)\
+  Estimated balance minutes **** = (Vcell - Vcell\_min ) \* Rbal / (Vcell \* ocvslope)\
   \
   Other than this calculated time, the BMS will check if the voltage of a cell that is being balanced, has reached the desired voltage as well. When the voltage of one of the cells reaches the cell overvoltage level or the charging current is less than the charge complete current, it will go to the RELAXATION state. The LED will stay blue and will blink if cell balancing is active. Balancing is finished if all the calculated cell balance minutes are expired or it has reached the lowest cell voltage.
 * RELAXATION: in this state the power switches are set open, disconnecting the battery from the charger. The MCU will be put in a very low power run (VLPR) mode, SBC in standby mode and the BCC to measure only at 10Hz. This will reduce the power in this state. The battery will relax for the specified relax time (default 300 sec). During this relaxing, the cells can still be balanced since this happens with a low balancing current. At the end of the relaxation period, the system will check whether the balancing is done. If balancing is not finished, the BMS will re-estimate the balance minutes. If balancing is finished and the highest cell voltage is lower than the cell overvoltage minus the voltage margin, it will return to the CHARGE WITH CB state to continue the charge process. If the highest cell is within this margin, the charging is complete, and it will go to the CHARGE COMPLETE state. To make sure it won’t endlessly go through this cycle with the CHARGE WITH CB state (this can happen if the end of charge current is met but the voltage requirement is not met), after 5 times it will not check if the highest cell voltage is within this margin and will go to the CHARGE COMPLETE state as well
@@ -49,7 +49,7 @@ The SELF TEST state is entered at power-up of the microcontroller. In this state
 
 If at any time the current flows from the battery to the output and this current is higher than the sleep current, the BMS transitions to the NORMAL mode. If a charger is disconnected, the state will transition to the SLEEP state. If the go to deep sleep command has been given or the button is pressed for five seconds there are two options: If one cell voltage is less than the storage voltage it will complete charging until each cell has reached the storage voltage, after this is done the BMS will transition to the SELF DISCHARGE state and this will transition to the DEEP SLEEP state. The other option is that no cell voltage is less than the storage voltage, than the BMS will transition to the SELF DISCHARGE state.
 
-![Figure 3: Charging state diagram](../.gitbook/assets/charge-state-diagram.trans.png)
+![Figure 3: Charging state diagram](<../.gitbook/assets/charge state diagram.trans.png>)
 
 ### **SLEEP state**
 

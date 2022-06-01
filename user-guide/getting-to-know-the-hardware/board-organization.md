@@ -16,10 +16,10 @@ The BMS board and Physical battery connected together can now be considered a "s
 
 The board is organized as shown in the figures below:
 
-![](<../../.gitbook/assets/image (23).png>)
+![](<../../.gitbook/assets/image (15).png>)
 
-![Board map - Top](<../../.gitbook/assets/image (15).png>)
+![Board map - Top](<../../.gitbook/assets/image (16).png>)
 
 ![](../../.gitbook/assets/board\_map\_bottom.png)
 
-![Board map - Bottom](<../../.gitbook/assets/image (21).png>)
+![Board map - Bottom](<../../.gitbook/assets/image (17).png>)

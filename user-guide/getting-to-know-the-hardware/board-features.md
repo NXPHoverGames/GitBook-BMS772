@@ -13,5 +13,5 @@ The RDDRONE-BMS772 integrates the following functions and features:&#x20;
 * implements SWD and JTAG debugging interfaces, works with standard Segger J-Link and other debuggers&#x20;
 * implements DCD-LZ combined debug and uart console interface for use with PX4 DroneCode and HoverGames platforms
 
-_**Note**: The 90A DC maximum current is obtained only when all MOSFETs and heatsinks are mounted. See _[_Power MOSFETs and heatsinks_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#power-mosfets-and-heatsinks).
+_**Note**: The 90A DC maximum current is obtained only when all MOSFETs and heatsinks are mounted. See_ [_Power MOSFETs and heatsinks_](../getting-started-with-the-rddrone-bms772/configuring-the-hardware.md#power-mosfets-and-heatsinks).
 

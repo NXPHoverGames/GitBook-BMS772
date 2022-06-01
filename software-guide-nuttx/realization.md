@@ -15,7 +15,7 @@ In the main source file, the BMS main can be found, this is the BMS application.
 
 There is a lot of data that is needed or set by different tasks. Because it is not wise to move this big chunk of data through all the tasks there needs to be some sort of shared memory. Because NuttX is POSIX compliance there are shared memory functions that could be used. But for these shared memory functions a memory management unit (MMU) is needed and this microcontroller does not have an MMU. That is why the whole data management will be made in a data source file. This makes sure the data is only made once but is not global. With functions the data can be read or written, and these functions ensures protection against multiple threads accessing the data at the same time. These functions can be seen in Figure 5.
 
-![Figure 5: Get parameter and Set parameter flowchart](../.gitbook/assets/0.png)
+![Figure 5: Get parameter and Set parameter flowchart](<../.gitbook/assets/0 (2).png>)
 
 To protect the data from multiple threads trying to access it at the same time, a mutex is used. A mutex is an object that can be locked and unlocked in an atomic operation. Meaning that if both threads want to lock the mutex, the threads cannot lock the same mutex at the same time. A mutex is needed to prevent data race. The other thread needs to wait until the mutex is available.
 
@@ -79,7 +79,7 @@ Since the charging state machine and the main state machine is implemented in th
 
 The SBC part is used to control the power of voltage regulators V1 (The most used 3.3V) and V2 (CAN PHY). With the setSbcMode() function the mode of the SBC can be set. In the normal mode both V1 and V2 are active, in the standby mode V2 is off, turning off the CAN transceiver and in the sleep mode both V1 and V2 are off, turning off almost the whole BMS board. In Figure 10 the simplified flowchart of this function can be seen. Besides power regulators, the SBC has a watchdog, which is used to reset the MCU if it doesn’t kick the watchdog within the set time, this is done via the NRST pin.
 
-![Figure 10: Set SBC mode flowchart](../.gitbook/assets/sbc\_setsbcmode.png)
+![Figure 10: Set SBC mode flowchart](<../.gitbook/assets/SBC\_setSbcMode (1).png>)
 
 ### **UAVCAN**
 
