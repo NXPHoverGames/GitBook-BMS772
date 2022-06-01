@@ -1,4 +1,3 @@
 # Board block diagram
 
-![RDDRONE-BMS772 block diagram](../../.gitbook/assets/block_diagram-copy.png)
-
+![RDDRONE-BMS772 Rev D block diagram](<../../.gitbook/assets/image (14).png>)
