@@ -26,7 +26,7 @@ Other uses include portable electronics and equipment needing better battery man
 * outdoor monitoring/measuring equipment
 
 {% hint style="success" %}
-If you just received your board, and want to jump to how to configure the jumpers and connectors for your specific battery [this is the URL to follow](user-guide/getting-started-with-the-rddrone-bms772/configuring-the-hardware.md)
+If you just received your board, and want to jump to how to configure the jumpers and connectors for your specific battery [this is the URL to follow](user-guide/getting-started-with-the-rddrone-bms772/configuring-the-hardware/)
 
 
 

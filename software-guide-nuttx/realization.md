@@ -39,7 +39,7 @@ In order to set a color to the RGB LED, the set led color function should be use
 
 ![Figure 7: Set LED color flowchart](../.gitbook/assets/3.png)
 
-****
+
 
 ### **GPIO**
 
