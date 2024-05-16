@@ -140,14 +140,18 @@ It is highly recommended that you check each parameters in [Parameters of the BM
 \
 Some parameters you would like to configure are:
 
-* a-rem (the remaining capacity)
+* battery-type (Which battery type do you have? 0=LiPo, 1=LiFePO4, 2=LiFeYPO4)
+  * This will change the under- and over-voltage, storage voltage, nominal voltage and the OCV curve it uses to correct the state of charge
+* n-cells (the amount of cells of the battery) \[3 .. 6]
+* sensor-enable (to enable the battery temperature sensor) \[0=disable, 1=enable]
+* a-rem (the remaining capacity) \[Ah]
   * &#x20;the BMS does a guess on what the remaining charge is based on a OCV(open cell voltage)/SoC (state of charge) table from one specific battery, but every battery is different.
     * It is advisable to insert the correct OCV/SoC table for the battery.
-* a-full (the full charge capacity of the battery)
-  * &#x20;while charging, the BMS will calculate this based on a-rem)
-* model-name (the name of the battery)
-* n-cells (the amount of cells of the battery)
-* a-factory (the factory capacity of the battery)
-* i-charge-full (the end of charge current of the battery (could be 10% from i-charge-max))
-* i-charge-max (the maximum charge current)
-* sensor-enable (to enable the battery temperature sensor)
+* a-full (the full charge capacity of the battery) \[Ah]
+  * &#x20;while charging, the BMS will calculate this based on a-rem
+  * If unknown, set to the same value as factory capacity after the next step
+* a-factory (the factory capacity of the battery) \[Ah]
+  * What is the capacity stated on the battery?
+* model-name (the name of the battery)&#x20;
+* i-charge-full (the end of charge current of the battery (could be 10% from i-charge-max)) \[mA]
+* i-charge-max (the maximum charge current) \[A]
