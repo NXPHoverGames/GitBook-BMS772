@@ -17,6 +17,8 @@ Also have a look at some of the other **NXP GitBooks:**
 
 The RDDRONE-BMS772 is a standalone BMS Reference Design suitable for mobile robotics such as drones and rovers, supporting 3-6 cell batteries.&#x20;
 
+The RDDRONE-BMS772 is a standalone BMS Reference Design suitable for mobile robotics such as drones and rovers, supporting 3-6 cell batteries.&#x20;
+
 Other uses include portable electronics and equipment needing better battery management
 
 * eScooters, ebikes
